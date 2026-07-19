@@ -229,9 +229,10 @@
   }
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
   .form-field label{display:block;font-weight:700;color:var(--navy);font-size:13px;margin-bottom:6px;}
-  .form-field input,.form-field select{
+  .form-field input,.form-field select,.form-input{
     width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito';font-size:15px;
   }
+  .form-input:focus{outline:none;border-color:var(--coral);}
   .referral-form .btn{width:100%;margin-top:10px;}
 
   /* FOOTER */
@@ -329,7 +330,7 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img src="https://picsum.photos/seed/kas-hero-v2/900/720" alt="A BCBA therapist smiling with a young child while speaking with the child's parent">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTAwIDcyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGNEU3QzkiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFM0Q5RUYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iNzIwIiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxjaXJjbGUgY3g9IjcyMCIgY3k9IjYwMCIgcj0iMTYwIiBmaWxsPSJyZ2JhKDIzMiwxMDEsNzUsMC4xMCkiLz4KICA8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjExMCIgZmlsbD0icmdiYSgxMjQsMTEwLDE0NywwLjEwKSIvPgogIDwhLS0gZ3JvdW5kIC0tPgogIDxyZWN0IHg9IjAiIHk9IjU2MCIgd2lkdGg9IjkwMCIgaGVpZ2h0PSIxNjAiIGZpbGw9InJnYmEoMjksNTgsOTIsMC4wNSkiLz4KICA8IS0tIGFkdWx0IGZpZ3VyZSAtLT4KICA8Y2lyY2xlIGN4PSIzNjAiIGN5PSIzODAiIHI9IjYwIiBmaWxsPSIjMkM0QzcyIi8+CiAgPHBhdGggZD0iTTI1MCA2MjAgUTI1MCA0NjAgMzYwIDQ2MCBRNDcwIDQ2MCA0NzAgNjIwIFoiIGZpbGw9IiMyQzRDNzIiLz4KICA8IS0tIGNoaWxkIGZpZ3VyZSAtLT4KICA8Y2lyY2xlIGN4PSI1MjAiIGN5PSI0NDAiIHI9IjQyIiBmaWxsPSIjRTg2NTRCIi8+CiAgPHBhdGggZD0iTTQ1MCA2MjAgUTQ1MCA1MDAgNTIwIDUwMCBRNTkwIDUwMCA1OTAgNjIwIFoiIGZpbGw9IiNFODY1NEIiLz4KICA8IS0tIHdhcm10aCBhY2NlbnQgKGhlYXJ0KSAtLT4KICA8cGF0aCBkPSJNNDQwIDMwMCBjMC0xNiAyMi0xNiAyMiAwIGMwLTE2IDIyLTE2IDIyIDAgYzAgMTYtMjIgMzAtMjIgMzAgYzAgMC0yMi0xNC0yMi0zMCBaIiBmaWxsPSIjRjJCRTIyIi8+Cjwvc3ZnPg==" alt="A BCBA therapist smiling with a young child while speaking with the child's parent">
   </div>
 </section>
 
@@ -344,7 +345,7 @@
       <div class="key-diff-badge">That's the Key Difference.</div>
     </div>
     <div class="trust-media">
-      <img src="https://picsum.photos/seed/kas-trust-v2/700/880" alt="A therapist and a young child working together during an ABA therapy session" loading="lazy">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iODgwIiB2aWV3Qm94PSIwIDAgNzAwIDg4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRTlGMkY5Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRUVGNEUzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9Ijg4MCIgZmlsbD0idXJsKCNiZzIpIi8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjAwIiByPSI5MCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjQpIi8+CiAgPGNpcmNsZSBjeD0iNTYwIiBjeT0iNjYwIiByPSIxMzAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yOCkiLz4KICA8IS0tIHRhYmxlIC0tPgogIDxyZWN0IHg9IjEyMCIgeT0iNjIwIiB3aWR0aD0iNDYwIiBoZWlnaHQ9IjIwIiByeD0iNiIgZmlsbD0icmdiYSgyOSw1OCw5MiwwLjEyKSIvPgogIDwhLS0gdGhlcmFwaXN0IGZpZ3VyZSAtLT4KICA8Y2lyY2xlIGN4PSIyNjAiIGN5PSI0NDAiIHI9IjU2IiBmaWxsPSIjMUQzQTVDIi8+CiAgPHBhdGggZD0iTTE3MCA2MjAgUTE3MCA0ODAgMjYwIDQ4MCBRMzUwIDQ4MCAzNTAgNjIwIFoiIGZpbGw9IiMxRDNBNUMiLz4KICA8IS0tIGNoaWxkIGZpZ3VyZSAtLT4KICA8Y2lyY2xlIGN4PSI0MzAiIGN5PSI0OTAiIHI9IjQwIiBmaWxsPSIjRTg2NTRCIi8+CiAgPHBhdGggZD0iTTM2NiA2MjAgUTM2NiA1MjAgNDMwIDUyMCBRNDk0IDUyMCA0OTQgNjIwIFoiIGZpbGw9IiNFODY1NEIiLz4KICA8IS0tIHNoYXJlZCBhY3Rpdml0eSBtYXJrZXIgKGJ1aWxkaW5nIGJsb2NrKSAtLT4KICA8cmVjdCB4PSIzODAiIHk9IjU2MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiByeD0iNCIgZmlsbD0iI0YyQkUyMiIvPgo8L3N2Zz4=" alt="A therapist and a young child working together during an ABA therapy session" loading="lazy">
     </div>
   </div>
 </section>
@@ -422,27 +423,27 @@
     </div>
     <div class="state-grid">
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-co-v2/500/320" alt="Denver, Colorado skyline" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5Db2xvcmFkbzwvdGV4dD4KPC9zdmc+" alt="Denver, Colorado skyline" loading="lazy">
         <div class="state-card-body"><h3>Colorado</h3><p>ABA therapy across the Denver metro and surrounding communities.</p><a class="btn btn-primary" href="/locations/colorado">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-ga-v2/500/320" alt="Atlanta, Georgia skyline" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5HZW9yZ2lhPC90ZXh0Pgo8L3N2Zz4=" alt="Atlanta, Georgia skyline" loading="lazy">
         <div class="state-card-body"><h3>Georgia</h3><p>In-home, clinic, and school-based ABA support across Georgia.</p><a class="btn btn-primary" href="/locations/georgia">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-il-v2/500/320" alt="Chicago, Illinois skyline" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5JbGxpbm9pczwvdGV4dD4KPC9zdmc+" alt="Chicago, Illinois skyline" loading="lazy">
         <div class="state-card-body"><h3>Illinois</h3><p>Compassionate, evidence-based care for Illinois families.</p><a class="btn btn-primary" href="/locations/illinois">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-ma-v2/500/320" alt="Boston, Massachusetts skyline" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5NYXNzYWNodXNldHRzPC90ZXh0Pgo8L3N2Zz4=" alt="Boston, Massachusetts skyline" loading="lazy">
         <div class="state-card-body"><h3>Massachusetts</h3><p>Now covering ABA services for the Down syndrome community.</p><a class="btn btn-primary" href="/locations/massachusetts">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-nc-v2/500/320" alt="North Carolina community neighborhood" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5Ob3J0aCBDYXJvbGluYTwvdGV4dD4KPC9zdmc+" alt="North Carolina community neighborhood" loading="lazy">
         <div class="state-card-body"><h3>North Carolina</h3><p>Personalized therapy options throughout North Carolina.</p><a class="btn btn-primary" href="/locations/north-carolina">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="https://picsum.photos/seed/kas-tn-v2/500/320" alt="Nashville, Tennessee skyline" loading="lazy">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0YyQzhCOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMDIiIHI9IjQ1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjQwIiByPSI2NCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDwhLS0gbWFwIHBpbiAtLT4KICA8cGF0aCBkPSJNMjUwIDkwIGMtMzAgMC01NCAyNC01NCA1NCBjMCA0MCA1NCA5MCA1NCA5MCBzNTQtNTAgNTQtOTAgYzAtMzAtMjQtNTQtNTQtNTQgWiIgZmlsbD0iIzFEM0E1QyIgb3BhY2l0eT0iMC44NSIvPgogIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjE0NCIgcj0iMTgiIGZpbGw9IiNGQ0U5REUiLz4KICA8dGV4dCB4PSI1MCUiIHk9Ijg2JSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj5UZW5uZXNzZWU8L3RleHQ+Cjwvc3ZnPg==" alt="Nashville, Tennessee skyline" loading="lazy">
         <div class="state-card-body"><h3>Tennessee</h3><p>Flexible ABA therapy settings serving Tennessee communities.</p><a class="btn btn-primary" href="/locations/tennessee">View Services</a></div>
       </div>
     </div>
@@ -501,16 +502,24 @@
 
     <form class="referral-form" action="" method="POST">
       <div class="form-row">
-        <div class="form-field"><label>Name (required)</label><input type="text" placeholder="Full name" /></div>
-        <div class="form-field"><label>Email (required)</label><input type="email" placeholder="Email address" /></div>
+        <div class="form-field"><label>Name (required)</label><input class="form-input" type="text" placeholder="Full name" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito',sans-serif;font-size:15px;color:#33404D;background:#fff;" /></div>
+        <div class="form-field"><label>Email (required)</label><input class="form-input" type="email" placeholder="Email address" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito',sans-serif;font-size:15px;color:#33404D;background:#fff;" /></div>
       </div>
       <div class="form-row">
-        <div class="form-field"><label>Phone (required)</label><input type="tel" placeholder="Phone number" /></div>
-        <div class="form-field"><label>Zip Code (required)</label><input type="text" placeholder="Zip code" /></div>
+        <div class="form-field"><label>Phone (required)</label><input class="form-input" type="tel" placeholder="Phone number" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito',sans-serif;font-size:15px;color:#33404D;background:#fff;" /></div>
+        <div class="form-field"><label>Zip Code (required)</label><input class="form-input" type="text" placeholder="Zip code" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito',sans-serif;font-size:15px;color:#33404D;background:#fff;" /></div>
       </div>
       <div class="form-field" style="margin-bottom:16px;">
         <label>State (required)</label>
-        <select><option>Select one...</option><option>Colorado</option><option>Georgia</option><option>Illinois</option><option>Massachusetts</option><option>North Carolina</option><option>Tennessee</option></select>
+        <select class="form-input" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito',sans-serif;font-size:15px;color:#33404D;background:#fff;">
+          <option>Select one...</option>
+          <option>Colorado</option>
+          <option>Georgia</option>
+          <option>Illinois</option>
+          <option>Massachusetts</option>
+          <option>North Carolina</option>
+          <option>Tennessee</option>
+        </select>
       </div>
       <button class="btn btn-primary" type="submit">Submit Referral</button>
     </form>
