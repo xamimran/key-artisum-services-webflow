@@ -75,7 +75,7 @@
   .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy);}
   .btn-outline:hover{background:var(--navy);color:#fff;}
   .btn-light{background:#fff;color:var(--navy);}
- 
+
   /* HEADER */
   header{
     padding:20px 8vw;display:flex;align-items:center;justify-content:space-between;
@@ -84,14 +84,14 @@
   .logo{display:flex;align-items:center;gap:12px;}
   .logo-mark{
     width:44px;height:44px;border-radius:12px;
-    background:conic-gradient(from 180deg,var(--coral),var(--gold),#9CBB6E,#6FA3C7,var(--purple));
+    object-fit:cover;
     flex-shrink:0;
   }
   .logo-text{font-family:'Baloo 2',sans-serif;font-weight:700;color:var(--navy);font-size:18px;line-height:1.1;}
   .logo-text span{display:block;font-family:'Nunito',sans-serif;font-weight:600;font-size:12px;color:var(--purple);}
   .header-cta{display:flex;align-items:center;gap:18px;}
   .header-phone{font-weight:700;color:var(--navy);font-size:15px;}
- 
+
   /* HERO */
   .hero{
     background:linear-gradient(135deg,var(--sky) 0%, var(--cream) 100%);
@@ -111,7 +111,7 @@
     background:linear-gradient(160deg, rgba(232,101,75,0.12), rgba(124,110,147,0.16));
     pointer-events:none;
   }
- 
+
   /* TRUST SECTION */
   .trust{background:#fff;}
   .trust-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 0.85fr;gap:60px;align-items:center;text-align:left;}
@@ -121,7 +121,7 @@
     display:inline-block;margin-top:8px;font-family:'Baloo 2',sans-serif;font-weight:700;
     color:var(--coral);font-size:20px;border-top:2px solid var(--gold);padding-top:16px;
   }
- 
+
   /* WHO CAN REFER */
   .who-refer{background:var(--sky);}
   .icon-grid{
@@ -133,14 +133,13 @@
   }
   .icon-circle{
     width:50px;height:50px;border-radius:50%;margin:0 auto 14px auto;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--cream);color:var(--coral);font-family:'Baloo 2';font-weight:700;font-size:18px;
+    display:block;object-fit:cover;background:var(--cream);
   }
   .icon-card p{margin:0;font-weight:700;color:var(--navy);font-size:15px;}
   .bottom-statement{
     text-align:center;margin-top:48px;font-family:'Baloo 2',sans-serif;font-size:22px;color:var(--navy);
   }
- 
+
   /* WHY PROVIDERS CHOOSE */
   .why-choose{background:#fff;}
   .card-grid-6{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:40px;}
@@ -154,7 +153,7 @@
     display:flex;align-items:center;justify-content:center;margin-bottom:16px;
     color:#6E8F45;font-size:20px;
   }
- 
+
   /* TIMELINE */
   .timeline-section{background:var(--cream);}
   .timeline{
@@ -173,7 +172,7 @@
     margin:0 auto 16px auto;font-size:18px;border:5px solid var(--cream);
   }
   .timeline-step p{font-weight:700;color:var(--navy);font-size:15px;margin:0;}
- 
+
   /* STATES */
   .states-section{background:var(--sky);}
   .state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
@@ -186,18 +185,19 @@
   .state-card h3{margin-bottom:0;}
   .state-card p{color:#5c6b78;font-size:15px;margin-bottom:8px;}
   .state-card .btn{align-self:flex-start;padding:10px 22px;font-size:14px;}
- 
+
   /* SERVICES ICON LIST */
   .services-section{background:#fff;}
   .service-list{
     display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px;
   }
   .service-pill{
+    display:block;
     border:1.5px solid #E4E4E4;border-radius:var(--radius-sm);padding:20px 14px;text-align:center;
     font-weight:700;color:var(--navy);font-size:14px;transition:all .18s ease;
   }
   .service-pill:hover{border-color:var(--coral);background:var(--cream);}
- 
+
   /* FAQ */
   .faq-section{background:var(--sage);}
   .faq-item{
@@ -209,10 +209,12 @@
     cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;
   }
   .faq-item summary::-webkit-details-marker{display:none;}
-  .faq-item summary::after{content:"+";font-size:24px;color:var(--coral);}
-  .faq-item[open] summary::after{content:"–";}
+  .faq-icon-plus, .faq-icon-minus{font-size:24px;color:var(--coral);line-height:1;flex-shrink:0;margin-left:12px;}
+  .faq-icon-minus{display:none;}
+  .faq-item[open] .faq-icon-plus{display:none;}
+  .faq-item[open] .faq-icon-minus{display:inline;}
   .faq-item .faq-body{padding:0 26px 22px 26px;color:#4d5b68;font-size:15px;}
- 
+
   /* FINAL CTA */
   .final-cta{
     background:linear-gradient(135deg,var(--purple), #6b5f82);
@@ -231,7 +233,7 @@
     width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #DDE3E8;font-family:'Nunito';font-size:15px;
   }
   .referral-form .btn{width:100%;margin-top:10px;}
- 
+
   /* FOOTER */
   footer{background:var(--navy);color:#CBD8E4;padding:70px 8vw 30px 8vw;}
   .footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;margin-bottom:50px;}
@@ -243,7 +245,7 @@
     border-top:1px solid rgba(255,255,255,0.15);padding-top:24px;
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#9FB2C4;
   }
- 
+
   @media(max-width:900px){
     .hero{grid-template-columns:1fr;}
     .trust-inner{grid-template-columns:1fr;text-align:center;}
@@ -272,7 +274,7 @@
     h2{font-size:28px;}
     .form-row{grid-template-columns:1fr;}
   }
- 
+
   @media(max-width:600px){
     .section{padding:56px 6vw;}
     header{padding:16px 6vw;flex-wrap:wrap;gap:12px;}
@@ -295,7 +297,7 @@
     .footer-bottom{flex-direction:column;text-align:center;}
     .trust-media, .state-card img{aspect-ratio:16/10;}
   }
- 
+
   @media(max-width:400px){
     .icon-grid{grid-template-columns:1fr;}
     .service-list{grid-template-columns:1fr;}
@@ -303,10 +305,10 @@
 </style>
 </head>
 <body>
- 
+
 <header>
   <div class="logo">
-    <div class="logo-mark"></div>
+    <img class="logo-mark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U4NjU0QiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI0YyQkUyMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3QzZFOTMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMjYiIGZpbGw9InVybCgjZykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiBvcGFjaXR5PSIwLjg1Ij5MT0dPPC90ZXh0Pgo8L3N2Zz4=" alt="Key Autism Services logo">
     <div class="logo-text">Key Autism Services<span>ABA Therapy</span></div>
   </div>
   <div class="header-cta">
@@ -314,7 +316,7 @@
     <a class="btn btn-outline" href="#refer-form" style="padding:12px 24px;">Contact Us</a>
   </div>
 </header>
- 
+
 <!-- HERO -->
 <section class="hero">
   <div>
@@ -327,10 +329,10 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNzIwIiB2aWV3Qm94PSIwIDAgOTAwIDcyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0Y0RTdDOSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFM0Q5RUYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iNzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTk4LjAiIGN5PSIyMzAuNCIgcj0iMTAwLjgwMDAwMDAwMDAwMDAxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNzIwLjAiIGN5PSI1NDAuMCIgcj0iMTQ0LjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzkiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxRDNBNUMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiBvcGFjaXR5PSIwLjc1Ij5IZXJvIFBob3RvPC90ZXh0Pgo8L3N2Zz4=" alt="A BCBA therapist smiling with a young child while speaking with the child's parent">
+    <img src="https://picsum.photos/seed/kas-hero-v2/900/720" alt="A BCBA therapist smiling with a young child while speaking with the child's parent">
   </div>
 </section>
- 
+
 <!-- TRUST -->
 <section class="section trust">
   <div class="section-inner trust-inner">
@@ -342,11 +344,11 @@
       <div class="key-diff-badge">That's the Key Difference.</div>
     </div>
     <div class="trust-media">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iODgwIiB2aWV3Qm94PSIwIDAgNzAwIDg4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U5RjJGOSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNFRUY0RTMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iODgwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTU0LjAiIGN5PSIyODEuNiIgcj0iOTguMDAwMDAwMDAwMDAwMDEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zNSkiLz4KICA8Y2lyY2xlIGN4PSI1NjAuMCIgY3k9IjY2MC4wIiByPSIxNDAuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPlRoZXJhcHkgU2Vzc2lvbiBQaG90bzwvdGV4dD4KPC9zdmc+" alt="A therapist and a young child working together during an ABA therapy session">
+      <img src="https://picsum.photos/seed/kas-trust-v2/700/880" alt="A therapist and a young child working together during an ABA therapy session" loading="lazy">
     </div>
   </div>
 </section>
- 
+
 <!-- WHO CAN REFER -->
 <section class="section who-refer">
   <div class="section-inner">
@@ -355,25 +357,25 @@
       <h2>Who Can Refer?</h2>
     </div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-circle">Pd</div><p>Pediatricians</p></div>
-      <div class="icon-card"><div class="icon-circle">DP</div><p>Developmental Pediatricians</p></div>
-      <div class="icon-card"><div class="icon-circle">Nr</div><p>Neurologists</p></div>
-      <div class="icon-card"><div class="icon-circle">Sc</div><p>Schools</p></div>
-      <div class="icon-card"><div class="icon-circle">SD</div><p>School Districts</p></div>
-      <div class="icon-card"><div class="icon-circle">ST</div><p>Speech Therapy</p></div>
-      <div class="icon-card"><div class="icon-circle">OT</div><p>Occupational Therapy</p></div>
-      <div class="icon-card"><div class="icon-circle">PT</div><p>Physical Therapy</p></div>
-      <div class="icon-card"><div class="icon-circle">Ps</div><p>Psychologists</p></div>
-      <div class="icon-card"><div class="icon-circle">EI</div><p>Early Intervention</p></div>
-      <div class="icon-card"><div class="icon-circle">DC</div><p>Daycare Providers</p></div>
-      <div class="icon-card"><div class="icon-circle">Fa</div><p>Parents</p></div>
-      <div class="icon-card"><div class="icon-circle">CO</div><p>Community Organizations</p></div>
-      <div class="icon-card"><div class="icon-circle">BH</div><p>Behavioral Health Providers</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Pediatricians icon" loading="lazy"><p>Pediatricians</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Developmental Pediatricians icon" loading="lazy"><p>Developmental Pediatricians</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Neurologists icon" loading="lazy"><p>Neurologists</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Schools icon" loading="lazy"><p>Schools</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="School Districts icon" loading="lazy"><p>School Districts</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Speech Therapy icon" loading="lazy"><p>Speech Therapy</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Occupational Therapy icon" loading="lazy"><p>Occupational Therapy</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Physical Therapy icon" loading="lazy"><p>Physical Therapy</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Psychologists icon" loading="lazy"><p>Psychologists</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Early Intervention icon" loading="lazy"><p>Early Intervention</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Daycare Providers icon" loading="lazy"><p>Daycare Providers</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Parents icon" loading="lazy"><p>Parents</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Community Organizations icon" loading="lazy"><p>Community Organizations</p></div>
+      <div class="icon-card"><img class="icon-circle" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZFRjdFMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC40KSIvPgo8L3N2Zz4=" alt="Behavioral Health Providers icon" loading="lazy"><p>Behavioral Health Providers</p></div>
     </div>
     <div class="bottom-statement">If you're helping a child, we'd love to partner with you.</div>
   </div>
 </section>
- 
+
 <!-- WHY CHOOSE -->
 <section class="section why-choose">
   <div class="section-inner">
@@ -386,13 +388,13 @@
       <div class="feature-card"><div class="feature-icon">✓</div><h3>Personalized ABA Therapy</h3><p>Treatment plans built around each child's individual goals and needs.</p></div>
       <div class="feature-card"><div class="feature-icon">✓</div><h3>Experienced Clinical Team</h3><p>Board Certified Behavior Analysts leading every case with expertise.</p></div>
       <div class="feature-card"><div class="feature-icon">✓</div><h3>Flexible Service Options</h3><p>Home, clinic, school, and early intervention settings available.</p></div>
-      <div class="feature-card"><div class="feature-icon">✓</div><h3>Insurance Support</h3><p>We help families navigate coverage and verify benefits quickly. <a href="#insurance" style="color:var(--coral);font-weight:700;text-decoration:underline;">See accepted insurance plans</a>.</p></div>
+      <div class="feature-card"><div class="feature-icon">✓</div><h3>Insurance Support</h3><p>We help families navigate coverage and verify benefits quickly. <a href="/insurance" style="color:var(--coral);font-weight:700;text-decoration:underline;">See accepted insurance plans</a>.</p></div>
       <div class="feature-card"><div class="feature-icon">✓</div><h3>Family Partnership</h3><p>Parents stay informed and involved throughout the entire journey.</p></div>
       <div class="feature-card"><div class="feature-icon">✓</div><h3>Convenient Locations</h3><p>Services available across multiple states, close to home.</p></div>
     </div>
   </div>
 </section>
- 
+
 <!-- TIMELINE -->
 <section class="section timeline-section">
   <div class="section-inner">
@@ -409,7 +411,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- STATES -->
 <section class="section states-section">
   <div class="section-inner">
@@ -420,33 +422,33 @@
     </div>
     <div class="state-grid">
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkM4QjgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPkNvbG9yYWRvPC90ZXh0Pgo8L3N2Zz4=" alt="Denver, Colorado skyline">
-        <div class="state-card-body"><h3>Colorado</h3><p>ABA therapy across the Denver metro and surrounding communities.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-co-v2/500/320" alt="Denver, Colorado skyline" loading="lazy">
+        <div class="state-card-body"><h3>Colorado</h3><p>ABA therapy across the Denver metro and surrounding communities.</p><a class="btn btn-primary" href="/locations/colorado">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0UzRUZGNyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDOURERUIiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPkdlb3JnaWE8L3RleHQ+Cjwvc3ZnPg==" alt="Atlanta, Georgia skyline">
-        <div class="state-card-body"><h3>Georgia</h3><p>In-home, clinic, and school-based ABA support across Georgia.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-ga-v2/500/320" alt="Atlanta, Georgia skyline" loading="lazy">
+        <div class="state-card-body"><h3>Georgia</h3><p>In-home, clinic, and school-based ABA support across Georgia.</p><a class="btn btn-primary" href="/locations/georgia">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZERjZFMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMkUyQUUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPklsbGlub2lzPC90ZXh0Pgo8L3N2Zz4=" alt="Chicago, Illinois skyline">
-        <div class="state-card-body"><h3>Illinois</h3><p>Compassionate, evidence-based care for Illinois families.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-il-v2/500/320" alt="Chicago, Illinois skyline" loading="lazy">
+        <div class="state-card-body"><h3>Illinois</h3><p>Compassionate, evidence-based care for Illinois families.</p><a class="btn btn-primary" href="/locations/illinois">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0VBRjJERSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDRkUzQjQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPk1hc3NhY2h1c2V0dHM8L3RleHQ+Cjwvc3ZnPg==" alt="Boston, Massachusetts skyline">
-        <div class="state-card-body"><h3>Massachusetts</h3><p>Now covering ABA services for the Down syndrome community.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-ma-v2/500/320" alt="Boston, Massachusetts skyline" loading="lazy">
+        <div class="state-card-body"><h3>Massachusetts</h3><p>Now covering ABA services for the Down syndrome community.</p><a class="btn btn-primary" href="/locations/massachusetts">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0VERThGMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNEM0M1RTEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPk5vcnRoIENhcm9saW5hPC90ZXh0Pgo8L3N2Zz4=" alt="North Carolina community neighborhood">
-        <div class="state-card-body"><h3>North Carolina</h3><p>Personalized therapy options throughout North Carolina.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-nc-v2/500/320" alt="North Carolina community neighborhood" loading="lazy">
+        <div class="state-card-body"><h3>North Carolina</h3><p>Personalized therapy options throughout North Carolina.</p><a class="btn btn-primary" href="/locations/north-carolina">View Services</a></div>
       </div>
       <div class="state-card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNTAwIDMyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZDRTlERSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGMEFFOUEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTEwLjAiIGN5PSIxMDIuNCIgcj0iNDQuODAwMDAwMDAwMDAwMDA0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMzUpIi8+CiAgPGNpcmNsZSBjeD0iNDAwLjAiIGN5PSIyNDAuMCIgcj0iNjQuMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIyKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFEM0E1QyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIG9wYWNpdHk9IjAuNzUiPlRlbm5lc3NlZTwvdGV4dD4KPC9zdmc+" alt="Nashville, Tennessee skyline">
-        <div class="state-card-body"><h3>Tennessee</h3><p>Flexible ABA therapy settings serving Tennessee communities.</p><a class="btn btn-primary" href="#">View Services</a></div>
+        <img src="https://picsum.photos/seed/kas-tn-v2/500/320" alt="Nashville, Tennessee skyline" loading="lazy">
+        <div class="state-card-body"><h3>Tennessee</h3><p>Flexible ABA therapy settings serving Tennessee communities.</p><a class="btn btn-primary" href="/locations/tennessee">View Services</a></div>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- SERVICES -->
 <section class="section services-section">
   <div class="section-inner">
@@ -455,20 +457,20 @@
       <h2>ABA Therapy Services</h2>
     </div>
     <div class="service-list">
-      <div class="service-pill">Clinic-Based ABA</div>
-      <div class="service-pill">In-Home ABA</div>
-      <div class="service-pill">School-Based ABA</div>
-      <div class="service-pill">Early Intervention</div>
-      <div class="service-pill">Behavior Assessments</div>
-      <div class="service-pill">Parent Training</div>
-      <div class="service-pill">Communication Skills</div>
-      <div class="service-pill">Social Skills</div>
-      <div class="service-pill">Daily Living Skills</div>
-      <div class="service-pill">Behavior Reduction</div>
+      <a class="service-pill" href="/services/clinic-based-aba">Clinic-Based ABA</a>
+      <a class="service-pill" href="/services/in-home-aba">In-Home ABA</a>
+      <a class="service-pill" href="/services/school-based-aba">School-Based ABA</a>
+      <a class="service-pill" href="/services/early-intervention">Early Intervention</a>
+      <a class="service-pill" href="/services/behavior-assessments">Behavior Assessments</a>
+      <a class="service-pill" href="/services/parent-training">Parent Training</a>
+      <a class="service-pill" href="/services/communication-skills">Communication Skills</a>
+      <a class="service-pill" href="/services/social-skills">Social Skills</a>
+      <a class="service-pill" href="/services/daily-living-skills">Daily Living Skills</a>
+      <a class="service-pill" href="/services/behavior-reduction">Behavior Reduction</a>
     </div>
   </div>
 </section>
- 
+
 <!-- FAQ -->
 <section class="section faq-section">
   <div class="section-inner" style="max-width:820px;">
@@ -477,64 +479,67 @@
       <h2>Frequently Asked Questions</h2>
     </div>
     <div style="margin-top:40px;">
-      <details class="faq-item"><summary>How do I refer a child?</summary><div class="faq-body">Simply complete the referral form below or call our intake team directly. We'll take it from there.</div></details>
-      <details class="faq-item"><summary>How long does the referral process take?</summary><div class="faq-body">Most families are contacted within 1–2 business days of a referral being submitted.</div></details>
-      <details class="faq-item"><summary>Do you accept my insurance?</summary><div class="faq-body">We work with most major insurance carriers, including Medicaid, Aetna, Cigna, Optum, Blue Cross Blue Shield, and Humana. <a id="insurance" href="#insurance-page" style="color:var(--coral);font-weight:700;text-decoration:underline;">View our full list of accepted insurance plans</a>.</div></details>
-      <details class="faq-item"><summary>Where do you provide services?</summary><div class="faq-body">We currently provide ABA therapy in Alabama, Colorado, Georgia, Illinois, Massachusetts, North Carolina, Tennessee, and Texas.</div></details>
-      <details class="faq-item"><summary>What ages do you serve?</summary><div class="faq-body">Our clinical team supports children from early intervention age through adolescence.</div></details>
-      <details class="faq-item"><summary>Do you provide clinic-based ABA?</summary><div class="faq-body">Yes, clinic-based ABA therapy is available at our locations across the states we serve.</div></details>
-      <details class="faq-item"><summary>Do you offer in-home ABA?</summary><div class="faq-body">Yes, our clinicians provide in-home ABA therapy tailored to each family's routine and environment.</div></details>
-      <details class="faq-item"><summary>Do you provide school-based ABA?</summary><div class="faq-body">Yes, our school-based ABA therapy program delivers support directly in classrooms and school settings where challenges arise.</div></details>
-      <details class="faq-item"><summary>How quickly will someone contact the family?</summary><div class="faq-body">Our intake team aims to reach every referred family within 1–2 business days.</div></details>
+      <details class="faq-item"><summary>How do I refer a child?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Simply complete the referral form below or call our intake team directly. We'll take it from there.</div></details>
+      <details class="faq-item"><summary>How long does the referral process take?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Most families are contacted within 1–2 business days of a referral being submitted.</div></details>
+      <details class="faq-item"><summary>Do you accept my insurance?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">We work with most major insurance carriers, including Medicaid, Aetna, Cigna, Optum, Blue Cross Blue Shield, and Humana. <a id="insurance" href="/insurance" style="color:var(--coral);font-weight:700;text-decoration:underline;">View our full list of accepted insurance plans</a>.</div></details>
+      <details class="faq-item"><summary>Where do you provide services?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">We currently provide ABA therapy in Alabama, Colorado, Georgia, Illinois, Massachusetts, North Carolina, Tennessee, and Texas.</div></details>
+      <details class="faq-item"><summary>What ages do you serve?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Our clinical team supports children from early intervention age through adolescence.</div></details>
+      <details class="faq-item"><summary>Do you provide clinic-based ABA?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Yes, clinic-based ABA therapy is available at our locations across the states we serve.</div></details>
+      <details class="faq-item"><summary>Do you offer in-home ABA?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Yes, our clinicians provide in-home ABA therapy tailored to each family's routine and environment.</div></details>
+      <details class="faq-item"><summary>Do you provide school-based ABA?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Yes, our school-based ABA therapy program delivers support directly in classrooms and school settings where challenges arise.</div></details>
+      <details class="faq-item"><summary>How quickly will someone contact the family?<span class="faq-icon-plus">+</span><span class="faq-icon-minus">–</span></summary><div class="faq-body">Our intake team aims to reach every referred family within 1–2 business days.</div></details>
     </div>
   </div>
 </section>
- 
+
 <!-- FINAL CTA -->
 <section class="section final-cta" id="refer-form">
   <div class="section-inner">
     <h2>Let's Help More Children Reach Their Full Potential.</h2>
     <p>Whether you're referring your first family or partnering with us for years, our team is committed to providing a seamless referral experience from beginning to end.</p>
     <div class="key-diff-badge">That's the Key Difference.</div>
- 
-    <div class="referral-form">
+
+    <form class="referral-form" action="" method="POST">
       <div class="form-row">
-        <div class="form-field"><label>Name (required)</label><input type="text" placeholder="Full name"></div>
-        <div class="form-field"><label>Email (required)</label><input type="email" placeholder="Email address"></div>
+        <div class="form-field"><label>Name (required)</label><input type="text" placeholder="Full name" /></div>
+        <div class="form-field"><label>Email (required)</label><input type="email" placeholder="Email address" /></div>
       </div>
       <div class="form-row">
-        <div class="form-field"><label>Phone (required)</label><input type="tel" placeholder="Phone number"></div>
-        <div class="form-field"><label>Zip Code (required)</label><input type="text" placeholder="Zip code"></div>
+        <div class="form-field"><label>Phone (required)</label><input type="tel" placeholder="Phone number" /></div>
+        <div class="form-field"><label>Zip Code (required)</label><input type="text" placeholder="Zip code" /></div>
       </div>
       <div class="form-field" style="margin-bottom:16px;">
         <label>State (required)</label>
         <select><option>Select one...</option><option>Colorado</option><option>Georgia</option><option>Illinois</option><option>Massachusetts</option><option>North Carolina</option><option>Tennessee</option></select>
       </div>
-      <button class="btn btn-primary" type="button">Submit Referral</button>
-    </div>
+      <button class="btn btn-primary" type="submit">Submit Referral</button>
+    </form>
   </div>
 </section>
- 
+
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="logo-text">Key Autism Services<span>ABA Therapy</span></div>
+      <div class="logo" style="margin-bottom:0;">
+        <img class="logo-mark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0U4NjU0QiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI0YyQkUyMiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3QzZFOTMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMjYiIGZpbGw9InVybCgjZykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIiBvcGFjaXR5PSIwLjg1Ij5MT0dPPC90ZXh0Pgo8L3N2Zz4=" alt="Key Autism Services logo">
+        <div class="logo-text">Key Autism Services<span>ABA Therapy</span></div>
+      </div>
       <p style="margin-top:16px;color:#9FB2C4;font-size:14px;">Still have questions?<br>Contact our intake team — we're here to help.</p>
       <a class="btn btn-primary" href="#" style="margin-top:8px;padding:12px 24px;font-size:14px;">Careers</a>
     </div>
     <div>
       <h3>Locations</h3>
       <div class="footer-locations">
-        <span>Alabama</span><span>Colorado</span>
-        <span>Georgia</span><span>Illinois</span>
-        <span>Massachusetts</span><span>North Carolina</span>
-        <span>Tennessee</span><span>Texas</span>
+        <a href="/locations/alabama">Alabama</a><a href="/locations/colorado">Colorado</a>
+        <a href="/locations/georgia">Georgia</a><a href="/locations/illinois">Illinois</a>
+        <a href="/locations/massachusetts">Massachusetts</a><a href="/locations/north-carolina">North Carolina</a>
+        <a href="/locations/tennessee">Tennessee</a><a href="/locations/texas">Texas</a>
       </div>
     </div>
     <div>
       <h3>Contact</h3>
       <p style="color:#CBD8E4;font-size:14px;">Call: (888) 329-4535<br>Fax: (844) 965-9105<br>webinfo@keyautismservices.com</p>
-      <a href="#parent-resources" style="color:var(--gold);font-size:14px;font-weight:700;text-decoration:underline;">Parent Resources</a>
+      <a href="/parent-resources" style="color:var(--gold);font-size:14px;font-weight:700;text-decoration:underline;">Parent Resources</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -542,7 +547,7 @@
     <span>Privacy Policy</span>
   </div>
 </footer>
- 
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -560,7 +565,6 @@
   ]
 }
 </script>
- 
+
 </body>
 </html>
- 
