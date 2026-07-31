@@ -9,501 +9,869 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  /* ── EXACT brand from keyautismservices.com ── */
-  --navy:        #1B3A4B;   /* headings */
-  --purple:      #7B6BA0;   /* section bgs, footer */
-  --purple-dark: #6A5A8F;
-  --coral:       #E8614A;   /* primary buttons */
-  --coral-hover: #D4513C;
-  --teal:        #3A8C8C;   /* accent */
-  --gold:        #F5A623;   /* "Unlock Their Potential" */
-  --cream:       #FAF3E0;   /* warm section bg */
-  --blue-bg:     #E8EFF5;   /* locations / trust bg */
-  --green-bg:    #EFF5E8;   /* card accent */
-  --yellow-bg:   #FFF8E6;   /* card accent */
-  --pink-bg:     #FFF0EE;   /* card accent */
-  --card-green:  #5BA85A;
-  --card-yellow: #F5A623;
-  --card-pink:   #E8614A;
-  --card-blue:   #3A7CA5;
-  --white:       #FFFFFF;
-  --text-dark:   #1B3A4B;
-  --text-body:   #374151;
-  --text-muted:  #6B7280;
-  --border:      #E5E7EB;
-  --check-green: #5BA85A;
+  --navy:       #1B3A4B;
+  --purple:     #7B6BA0;
+  --coral:      #E8614A;
+  --coral-h:    #D4513C;
+  --teal:       #3A8C8C;
+  --gold:       #F5A623;
+  --cream:      #FAF3E0;
+  --blue-bg:    #E8EFF5;
+  --white:      #FFFFFF;
+  --text-muted: #6B7280;
+  --border:     #E5E7EB;
+  --green:      #5BA85A;
+  --card-blue:  #3A7CA5;
 }
 
-body { font-family: 'Nunito', sans-serif; color: var(--text-body); background: var(--white); line-height: 1.6; }
+/* ─ BASE ─ */
+html { scroll-behavior: smooth; }
+body { font-family:'Nunito',sans-serif; color:#374151; background:#fff; line-height:1.6; overflow-x:hidden; }
 
-/* ── SECONDARY CTA BAR ── */
-.secondary-cta-bar {
-  background: var(--cream);
-  border-top: 1px solid #EDE8DC;
-  border-bottom: 1px solid #EDE8DC;
-  padding: 16px 60px;
-  display: flex; align-items: center; gap: 16px;
-  flex-wrap: wrap; justify-content: center;
-}
-.secondary-cta-label {
-  font-size: 14px; font-weight: 700; color: var(--navy);
-  white-space: nowrap; margin-right: 8px;
-}
-.secondary-cta-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; }
-.scta-btn {
-  display: inline-block; text-decoration: none;
-  font-family: 'Nunito', sans-serif; font-weight: 700;
-  font-size: 13px; padding: 8px 18px; border-radius: 6px;
-  transition: all .2s; cursor: pointer; white-space: nowrap;
-}
-.scta-primary { background: var(--coral); color: #fff; border: 2px solid var(--coral); }
-.scta-primary:hover { background: var(--coral-hover); border-color: var(--coral-hover); }
-.scta-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-.scta-outline:hover { background: var(--navy); color: #fff; }
+/* ─ REVEAL ANIMATION ─ */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-left  { opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s ease; }
+.reveal-right { opacity:0; transform:translateX(40px);  transition:opacity .7s ease, transform .7s ease; }
+.reveal-left.visible, .reveal-right.visible { opacity:1; transform:translateX(0); }
+.delay-1 { transition-delay:.1s; }
+.delay-2 { transition-delay:.2s; }
+.delay-3 { transition-delay:.3s; }
+.delay-4 { transition-delay:.4s; }
+.delay-5 { transition-delay:.5s; }
 
-/* ── ABA SVG ICON CARDS ── */
-.aba-icon-wrap {
-  width: 64px; height: 64px; border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 14px; flex-shrink: 0;
-}
-.aba-icon-wrap svg { width: 30px; height: 30px; }
+/* ─ TOP BAR ─ */
+.top-bar { background:#f5f5f5; border-bottom:1px solid var(--border); padding:8px 60px; display:flex; align-items:center; justify-content:space-between; font-size:13px; color:var(--text-muted); }
+.top-bar-left { display:flex; gap:24px; }
+.top-bar a { color:var(--text-muted); text-decoration:none; display:flex; align-items:center; gap:5px; }
+.top-bar a:hover { color:var(--navy); }
 
-/* ── TOP BAR ── */
-.top-bar {
-  background: #f5f5f5; border-bottom: 1px solid var(--border);
-  padding: 8px 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 13px; color: var(--text-muted);
-}
-.top-bar a { color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-.top-bar a:hover { color: var(--navy); }
-.top-bar-left { display: flex; gap: 24px; }
+/* ─ NAV ─ */
+nav { background:#fff; border-bottom:1px solid var(--border); padding:0 60px; height:74px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; box-shadow:0 2px 12px rgba(0,0,0,.04); }
+.nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo-img  { height:52px; }
+.logo-name { font-weight:900; font-size:15px; color:var(--navy); }
+.logo-sub  { font-size:11px; color:var(--purple); letter-spacing:.05em; text-transform:uppercase; font-weight:600; }
+.nav-phone { font-size:14px; font-weight:700; color:var(--navy); text-decoration:none; }
+.nav-phone:hover { color:var(--coral); }
+#nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:4px; flex-direction:column; gap:5px; }
+#nav-toggle span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; transition:all .2s; }
+#nav-drawer { display:none; position:fixed; top:74px; left:0; right:0; background:#fff; border-bottom:1px solid var(--border); z-index:199; padding:20px 16px; flex-direction:column; gap:14px; box-shadow:0 8px 24px rgba(0,0,0,.1); }
+#nav-drawer a { font-size:15px; font-weight:700; color:var(--navy); text-decoration:none; }
 
-/* ── NAV ── */
-nav {
-  background: var(--white); border-bottom: 1px solid var(--border);
-  padding: 0 60px; height: 74px;
-  display: flex; align-items: center; justify-content: space-between;
-  position: sticky; top: 0; z-index: 100;
-}
-.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.logo-img  { height: 52px; }
-.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-name { font-weight: 900; font-size: 15px; color: var(--navy); }
-.logo-sub  { font-size: 11px; color: var(--purple); letter-spacing: .05em; text-transform: uppercase; font-weight: 600; }
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.nav-phone { font-size: 14px; font-weight: 700; color: var(--navy); text-decoration: none; }
+/* ─ BUTTONS ─ */
+.btn { display:inline-block; text-decoration:none; font-family:'Nunito',sans-serif; font-weight:700; border:none; cursor:pointer; transition:all .22s; border-radius:8px; }
+.btn-coral { background:var(--coral); color:#fff; padding:13px 28px; font-size:15px; box-shadow:0 4px 14px rgba(232,97,74,.3); }
+.btn-coral:hover { background:var(--coral-h); transform:translateY(-1px); box-shadow:0 6px 20px rgba(232,97,74,.4); }
+.btn-coral-lg { font-size:16px; padding:15px 34px; }
+.btn-outline { background:transparent; color:var(--navy); border:2px solid var(--navy); padding:13px 28px; font-size:15px; border-radius:8px; }
+.btn-outline:hover { background:var(--navy); color:#fff; }
+.btn-outline-white { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.6); padding:13px 28px; font-size:15px; border-radius:8px; }
+.btn-outline-white:hover { border-color:#fff; background:rgba(255,255,255,.12); }
+.btn-gold { background:var(--gold); color:var(--navy); padding:12px 28px; border-radius:8px; font-size:15px; font-weight:800; text-decoration:none; display:inline-block; transition:all .2s; }
+.btn-gold:hover { background:#e09820; transform:translateY(-1px); }
+.actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:1.75rem; }
 
-/* ── BUTTONS ── */
-.btn { display: inline-block; text-decoration: none; font-family: 'Nunito', sans-serif; font-weight: 700; border: none; cursor: pointer; transition: all .2s; border-radius: 8px; }
-.btn-coral  { background: var(--coral); color: #fff; padding: 12px 26px; font-size: 15px; }
-.btn-coral:hover { background: var(--coral-hover); }
-.btn-coral-lg { font-size: 16px; padding: 14px 32px; border-radius: 8px; }
-.btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); padding: 12px 26px; font-size: 15px; }
-.btn-outline:hover { background: var(--navy); color: #fff; }
-.btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6); padding: 12px 26px; font-size: 15px; border-radius: 8px; }
-.btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.1); }
-.btn-white  { background: #fff; color: var(--navy); padding: 12px 26px; font-size: 15px; border-radius: 8px; font-weight: 700; }
-.btn-white:hover { background: #f0f4f8; }
+/* ─ SHARED ─ */
+.eyebrow { font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; color:var(--coral); margin-bottom:10px; }
+.eyebrow-gold { color:var(--gold); }
+.eyebrow-purple { color:var(--purple); }
+.eyebrow-teal { color:var(--teal); }
+.eyebrow-white { color:rgba(255,255,255,.7); }
+.eyebrow-center { text-align:center; }
+.section-title { font-size:2.15rem; font-weight:900; color:var(--navy); line-height:1.2; margin-bottom:1rem; }
+.section-title-white { color:#fff; }
+.section-title-center { text-align:center; }
+.section-body { font-size:15px; color:var(--text-muted); line-height:1.85; }
+.pad { padding:88px 60px; }
+.container { max-width:1140px; margin:0 auto; }
 
-/* ── SHARED ── */
-.eyebrow { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; color: var(--coral); margin-bottom: 10px; }
-.eyebrow-gold   { color: var(--gold); }
-.eyebrow-purple { color: var(--purple); }
-.eyebrow-teal   { color: var(--teal); }
-.eyebrow-center { text-align: center; }
-.section-title  { font-size: 2.2rem; font-weight: 900; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
-.section-title-white { color: #fff; }
-.section-title-center { text-align: center; }
-.section-body { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
-.pad { padding: 80px 60px; }
-.container { max-width: 1140px; margin: 0 auto; }
-.actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 1.75rem; }
+/* ─ SECONDARY CTA BAR ─ */
+.secondary-cta-bar { background:var(--cream); border-bottom:1px solid #EDE8DC; padding:14px 60px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center; }
+.secondary-cta-label { font-size:14px; font-weight:700; color:var(--navy); white-space:nowrap; }
+.secondary-cta-actions { display:flex; gap:9px; flex-wrap:wrap; align-items:center; justify-content:center; }
+.scta-btn { display:inline-block; text-decoration:none; font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; padding:8px 16px; border-radius:6px; transition:all .2s; cursor:pointer; white-space:nowrap; }
+.scta-primary { background:var(--coral); color:#fff; border:2px solid var(--coral); }
+.scta-primary:hover { background:var(--coral-h); }
+.scta-outline { background:transparent; color:var(--navy); border:2px solid var(--navy); }
+.scta-outline:hover { background:var(--navy); color:#fff; }
 
-/* ── HERO ── */
+/* ═══════════════════════════
+   HERO
+═══════════════════════════ */
 .hero {
-  background: linear-gradient(120deg, #dce8f0 0%, #e8eff5 40%, #faf3e0 100%);
-  display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 560px; align-items: center;
-  padding: 60px 60px 60px 60px; gap: 48px;
-  position: relative; overflow: hidden;
+  background:linear-gradient(120deg,#dce8f0 0%,#e8eff5 40%,#faf3e0 100%);
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:580px; align-items:center;
+  padding:70px 60px; gap:52px; position:relative; overflow:hidden;
 }
-.hero::before {
-  content: ''; position: absolute; top: -60px; right: -60px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(245,166,35,.15) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(123,107,160,.12); border: 1.5px solid rgba(123,107,160,.3);
-  border-radius: 100px; padding: 6px 16px; margin-bottom: 1.25rem;
-  font-size: 12px; font-weight: 800; color: var(--purple);
-  letter-spacing: .1em; text-transform: uppercase;
-}
-.hero-badge-dot { width: 7px; height: 7px; background: var(--purple); border-radius: 50%; }
-.hero-title { font-size: 2.8rem; font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 1.2rem; }
-.hero-title span { color: var(--purple); }
-.hero-sub  { font-size: 16px; color: var(--text-body); line-height: 1.75; max-width: 440px; }
-.hero-form-card {
-  background: #fff; border-radius: 16px;
-  padding: 2rem; box-shadow: 0 8px 40px rgba(27,58,75,.12);
-  position: relative; z-index: 1;
-}
-.hero-form-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-.hero-form-sub   { font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem; }
-.form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.form-group { margin-bottom: 0; }
-.form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.form-input, .form-select {
-  width: 100%; border: 1.5px solid #DDE3E8; background: #fff;
-  font-size: 14px; padding: 11px 14px; font-family: 'Nunito',sans-serif;
-  border-radius: 8px; outline: none; color: var(--text-dark); transition: border-color .2s;
-}
-.form-input:focus, .form-select:focus { border-color: var(--purple); }
-.form-submit {
-  width: 100%; background: var(--coral); color: #fff; border: none;
-  padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 800;
-  cursor: pointer; font-family: 'Nunito',sans-serif; margin-top: 8px; transition: background .2s;
-}
-.form-submit:hover { background: var(--coral-hover); }
-.form-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 10px; }
-.form-success { display: none; text-align: center; padding: 2rem; }
-.form-success-icon  { font-size: 48px; margin-bottom: 12px; }
-.form-success-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
-.form-success-sub   { font-size: 14px; color: var(--text-muted); }
 
-/* ── TRUST BAR ── */
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(123,107,160,.12); border:1.5px solid rgba(123,107,160,.3); border-radius:100px; padding:6px 16px; margin-bottom:1.25rem; font-size:12px; font-weight:800; color:var(--purple); letter-spacing:.1em; text-transform:uppercase }
+.hero-badge-dot { width:7px; height:7px; background:var(--purple); border-radius:50% }
+ to{opacity:1;transform:scale(1)} }
+ 50%{transform:scale(1.4);opacity:.7} }
+.hero-title { font-size:2.8rem; font-weight:900; color:var(--navy); line-height:1.1; margin-bottom:1.2rem }
+.hero-title span { color:var(--purple); }
+.hero-sub { font-size:16px; color:#374151; line-height:1.8; max-width:440px }
+.hero-actions { animation:fadeUp .7s .5s ease both; }
+ to{opacity:1;transform:translateY(0)} }
+
+/* HERO FORM */
+.hero-form-card { background:#fff; border-radius:20px; padding:2rem; box-shadow:0 12px 48px rgba(27,58,75,.14); position:relative; z-index:1 }
+.hero-form-title { font-size:18px; font-weight:900; color:var(--navy); margin-bottom:4px; }
+.hero-form-sub   { font-size:13px; color:var(--text-muted); margin-bottom:1.4rem; }
+.form-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.form-label { display:block; font-size:13px; font-weight:700; color:var(--navy); margin-bottom:5px; }
+.form-input,.form-select { width:100%; border:1.5px solid #DDE3E8; background:#fff; font-size:14px; padding:11px 14px; font-family:'Nunito',sans-serif; border-radius:8px; outline:none; color:var(--navy); transition:border-color .2s, box-shadow .2s; }
+.form-input:focus,.form-select:focus { border-color:var(--purple); box-shadow:0 0 0 3px rgba(123,107,160,.12); }
+.form-submit { width:100%; background:var(--coral); color:#fff; border:none; padding:14px; border-radius:8px; font-size:16px; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; margin-top:8px; transition:background .2s, transform .2s, box-shadow .2s; box-shadow:0 4px 14px rgba(232,97,74,.3); }
+.form-submit:hover { background:var(--coral-h); transform:translateY(-1px); box-shadow:0 6px 20px rgba(232,97,74,.4); }
+.form-note { font-size:12px; color:var(--text-muted); text-align:center; margin-top:10px; }
+.form-success { display:none; text-align:center; padding:2rem; }
+.form-success-icon  { font-size:48px; margin-bottom:12px; }
+.form-success-title { font-size:18px; font-weight:800; color:var(--navy); }
+.form-success-sub   { font-size:14px; color:var(--text-muted); margin-top:6px; }
+
+/* ─ TRUST BAR — PREMIUM INFINITE MARQUEE ─ */
 .trust-bar {
-  background: var(--purple); padding: 18px 60px;
-  display: flex; align-items: center; gap: 0; overflow-x: auto;
+  background: linear-gradient(135deg, #6a5a8f 0%, var(--purple) 50%, #8a7ab0 100%);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(123,107,160,.35);
+}
+.trust-fade-left {
+  position:absolute; top:0; bottom:0; left:0; width:120px;
+  background:linear-gradient(to right,#6a5a8f 0%,transparent 100%);
+  z-index:2; pointer-events:none;
+}
+.trust-fade-right {
+  position:absolute; top:0; bottom:0; right:0; width:120px;
+  background:linear-gradient(to left,#8a7ab0 0%,transparent 100%);
+  z-index:2; pointer-events:none;
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: marqueeScroll 28s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+.trust-bar:hover .marquee-track { animation-play-state: paused; }
+
+  100% { transform: translateX(-50%); }
 }
 .trust-item {
-  display: flex; align-items: center; gap: 8px;
-  color: rgba(255,255,255,.92); font-size: 14px; font-weight: 600;
-  white-space: nowrap; padding: 0 28px;
-  border-right: 1px solid rgba(255,255,255,.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.95);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0 32px;
+  height: 64px;
+  letter-spacing: .01em;
+  /* NO left/right borders — using dot separators instead */
 }
-.trust-item:first-child { padding-left: 0; }
-.trust-item:last-child  { border-right: none; }
-.trust-check { width: 22px; height: 22px; background: var(--check-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; font-weight: 900; flex-shrink: 0; }
-
-/* ── WHY KEY ── */
-.why-key { background: var(--white); }
-.why-key-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 3rem; }
-.why-key-img { border-radius: 20px; overflow: hidden; height: 380px; }
-.why-key-img img { width: 100%; height: 100%; object-fit: cover; }
-.why-key-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-.why-card {
-  border-radius: 14px; padding: 1.5rem;
-  border-left: 4px solid transparent; transition: all .2s;
+.trust-item-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 100px;
+  padding: 7px 18px 7px 10px;
+  backdrop-filter: blur(4px);
+  transition: background .2s;
 }
-.why-card.green  { background: var(--green-bg);  border-left-color: var(--card-green); }
-.why-card.yellow { background: var(--yellow-bg); border-left-color: var(--card-yellow); }
-.why-card.pink   { background: var(--pink-bg);   border-left-color: var(--card-pink); }
-.why-card.blue   { background: #EBF4FB;           border-left-color: var(--card-blue); }
-.why-card.purple { background: #F3F0FF;           border-left-color: var(--purple); }
-.why-card.teal   { background: #E8F5F5;           border-left-color: var(--teal); }
-.why-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(27,58,75,.08); }
-.why-card-label { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
-.why-card.green  .why-card-label { color: var(--card-green); }
-.why-card.yellow .why-card-label { color: var(--card-yellow); }
-.why-card.pink   .why-card-label { color: var(--card-pink); }
-.why-card.blue   .why-card-label { color: var(--card-blue); }
-.why-card.purple .why-card-label { color: var(--purple); }
-.why-card.teal   .why-card-label { color: var(--teal); }
-.why-card-title { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-.why-card-body  { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-
-/* ── TRICARE SECTION ── */
-.tricare-section {
-  background: var(--purple);
-  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
-}
-.tricare-text { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
-.tricare-text .section-body { color: rgba(255,255,255,.8); margin-top: 1rem; font-size: 16px; }
-.tricare-img { position: relative; overflow: hidden; min-height: 460px; }
-.tricare-img img { width: 100%; height: 100%; object-fit: cover; }
-.tricare-img-overlay { position: absolute; inset: 0; background: rgba(123,107,160,.25); }
-.tricare-float {
-  position: absolute; bottom: 28px; left: 28px;
-  background: #fff; border-radius: 14px; padding: 16px 20px; max-width: 260px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.15);
-}
-.tricare-float-title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-.tricare-float-body  { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-
-/* ── ABA HELPS ── */
-.aba-helps { background: var(--cream); text-align: center; }
-.aba-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 2.5rem; }
-.aba-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 14px; padding: 2rem 1rem;
-  text-align: center; transition: all .2s;
-}
-.aba-card:hover { border-color: var(--purple); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(123,107,160,.1); }
-.aba-icon  { font-size: 36px; margin-bottom: 12px; display: block; }
-.aba-label { font-size: 14px; font-weight: 700; color: var(--navy); }
-
-/* ── HOW TO GET STARTED ── */
-.get-started { background: var(--blue-bg); text-align: center; }
-.steps-row {
-  display: flex; align-items: flex-start; position: relative;
-  margin-top: 3.5rem; max-width: 900px; margin-left: auto; margin-right: auto;
-}
-.steps-row::before {
-  content: ''; position: absolute;
-  top: 26px; left: calc(12.5% + 26px); right: calc(12.5% + 26px);
-  border-top: 3px dashed var(--purple);
-}
-.step { flex: 1; text-align: center; position: relative; z-index: 1; padding: 0 8px; }
-.step-num {
-  width: 52px; height: 52px; background: var(--purple); color: #fff;
-  font-size: 20px; font-weight: 900; border-radius: 50%;
+.trust-bar:hover .trust-item-pill { background: rgba(255,255,255,.15); }
+.trust-check {
+  width: 24px; height: 24px;
+  background: linear-gradient(135deg, #5BA85A, #4a9a49);
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px; border: 4px solid var(--blue-bg);
+  font-size: 11px; color: #fff; font-weight: 900; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(91,168,90,.4), 0 0 0 3px rgba(91,168,90,.2);
 }
-.step-title { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-.step-body  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-
-/* ── WHAT TO EXPECT ── */
-.expect { background: var(--white); }
-.expect-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 2.5rem; }
-.expect-card {
-  border: 1px solid var(--border); border-radius: 16px;
-  padding: 2rem; position: relative; overflow: hidden; transition: all .2s;
+.trust-dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  margin: 0 8px;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
-.expect-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,58,75,.08); }
-.expect-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
-.expect-card.c1::before { background: var(--coral); }
-.expect-card.c2::before { background: var(--card-green); }
-.expect-card.c3::before { background: var(--purple); }
-.expect-num {
-  font-size: 56px; font-weight: 900; opacity: .06; color: var(--navy);
-  position: absolute; top: 6px; right: 14px; line-height: 1; pointer-events: none;
+
+/* ═══════════════════════════
+   STATS COUNTER STRIP
+═══════════════════════════ */
+.stats-strip {
+  background: var(--navy);
+  padding: 64px 60px;
 }
-.expect-title { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; padding-right: 52px; }
-.expect-body  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-/* ── LOCATIONS ── */
-.locations { background: var(--blue-bg); }
-.locations-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; }
-.locations-left h2 { font-size: 2rem; font-weight: 900; color: var(--navy); margin-bottom: 1rem; }
-.locations-list { margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
-.locations-list a {
-  font-size: 15px; font-weight: 600; color: var(--navy); text-decoration: none;
-  display: flex; align-items: center; gap: 6px; padding: 4px 0;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
 }
-.locations-list a::before { content: '▶'; font-size: 9px; color: var(--coral); }
-.locations-list a:hover { color: var(--purple); }
-
-/* ── US MAP SVG ── */
-.map-svg-wrap { background: #fff; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(27,58,75,.08); }
-.map-svg-wrap svg { width: 100%; display: block; }
-.state-default { fill: #CBD5E0; stroke: #fff; stroke-width: 1; transition: fill .2s; cursor: pointer; }
-.state-co { fill: var(--coral) !important; }
-.state-il { fill: var(--gold) !important; }
-.state-nc { fill: var(--gold) !important; }
-.state-active:hover { opacity: .85; }
-.map-legend { display: flex; gap: 20px; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
-.map-legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--navy); }
-.legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-
-/* Location cards below map */
-.loc-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 2.5rem; }
-.loc-card { background: var(--white); border-radius: 14px; overflow: hidden; transition: all .2s; }
-.loc-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,58,75,.1); }
-.loc-flag { height: 140px; overflow: hidden; }
-.loc-flag img { width: 100%; height: 100%; object-fit: cover; }
-.loc-body { padding: 1.1rem 1.25rem 1.4rem; }
-.loc-state { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-.loc-desc  { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
-.loc-link  { background: var(--coral); color: #fff; padding: 7px 18px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-block; transition: background .2s; }
-.loc-link:hover { background: var(--coral-hover); }
-
-/* ── FAQ ── */
-.faq { background: #F3F0FF; }
-.faq-inner { max-width: 860px; margin: 0 auto; }
-.faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 12px; }
-.faq-item { background: var(--white); border-radius: 12px; overflow: hidden; }
-.faq-q {
-  width: 100%; background: none; border: none;
-  padding: 20px 24px; font-size: 15px; font-weight: 700; color: var(--navy);
-  text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-  font-family: 'Nunito',sans-serif;
+.stat-item {
+  text-align: center;
+  padding: 32px 24px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
-.faq-q:hover { color: var(--purple); }
-.faq-plus { font-size: 22px; color: var(--coral); flex-shrink: 0; transition: transform .2s; }
-.faq-item.open .faq-plus { transform: rotate(45deg); }
-.faq-a { display: none; padding: 0 24px 20px; font-size: 14px; color: var(--text-muted); line-height: 1.75; }
-.faq-a a { color: var(--coral); }
-.faq-item.open .faq-a { display: block; }
-
-/* ── PROVIDER SECTION ── */
-.provider { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-.provider-img { overflow: hidden; min-height: 420px; }
-.provider-img img { width: 100%; height: 100%; object-fit: cover; }
-.provider-text { padding: 80px 60px; }
-
-/* ── FINAL CTA ── */
-.final-cta {
-  background: var(--purple);
-  display: grid; grid-template-columns: 1fr 1fr; min-height: 460px;
+.stat-item:last-child { border-right: none; }
+.stat-value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  line-height: 1;
 }
-.final-cta-img { position: relative; overflow: hidden; }
-.final-cta-img img { width: 100%; height: 100%; object-fit: cover; }
-.final-cta-overlay { position: absolute; inset: 0; background: rgba(123,107,160,.3); }
-.final-cta-text { padding: 5rem; display: flex; flex-direction: column; justify-content: center; }
-.final-cta-text .section-body { color: rgba(255,255,255,.8); margin-top: 1rem; }
-
-/* ── UNLOCK POTENTIAL BANNER ── */
-.unlock-banner {
-  background: var(--purple); text-align: center;
-  padding: 56px 60px; border-top: 1px solid rgba(255,255,255,.1);
+.stat-num {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.unlock-icon { font-size: 36px; margin-bottom: 12px; }
-.unlock-title { font-size: 1.5rem; font-weight: 900; color: #fff; }
-.unlock-title span { color: var(--gold); }
-.unlock-actions { margin-top: 1.5rem; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-.btn-gold { background: var(--gold); color: var(--navy); padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: all .2s; }
-.btn-gold:hover { background: #e09820; }
+.stat-plus {
+  font-size: 2rem;
+  color: var(--coral);
+  font-weight: 900;
+  line-height: 1;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.stat-label {
+  font-size: 14px;
+  color: rgba(255,255,255,.72);
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 140px;
+}
 
-/* ── FOOTER ── */
-footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
-.footer-top { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 2rem; }
-.footer-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.footer-logo-img { height: 52px; }
-.footer-brand    { font-size: 15px; font-weight: 800; color: #fff; }
-.footer-brand-sub { font-size: 11px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
-.footer-tagline  { font-size: 13px; color: #9FB2C4; line-height: 1.7; margin-bottom: 14px; }
-.footer-btn      { display: inline-block; background: var(--coral); color: #fff; padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; }
-.footer-col h3   { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 14px; text-transform: uppercase; letter-spacing: .07em; }
-.footer-locs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
-.footer-col a    { display: block; font-size: 14px; color: #9FB2C4; text-decoration: none; margin-bottom: 6px; }
-.footer-col a:hover { color: #fff; }
-.footer-contact-text { font-size: 14px; color: #CBD8E4; line-height: 1.9; }
-.footer-contact-link { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 14px; display: inline-block; margin-top: 10px; }
-.footer-bottom { display: flex; justify-content: space-between; font-size: 12px; color: #4A6070; flex-wrap: wrap; gap: 8px; }
-.footer-bottom a { color: #4A6070; text-decoration: none; }
+/* ═══════════════════════════
+   WHY KEY
+═══════════════════════════ */
+.why-key { background:#fff; }
+.why-key-intro { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-bottom:56px; }
+.why-key-img { border-radius:20px; overflow:hidden; height:400px; position:relative; }
+.why-key-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.why-key-img:hover img { transform:scale(1.04); }
+.why-key-img-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,transparent 60%,rgba(27,58,75,.15)); border-radius:20px; pointer-events:none; }
+.why-key-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.why-card { border-radius:14px; padding:1.6rem; border-left:4px solid transparent; transition:all .25s; cursor:default; }
+.why-card.green  { background:#EFF5E8; border-left-color:var(--green); }
+.why-card.yellow { background:#FFF8E6; border-left-color:var(--gold); }
+.why-card.pink   { background:#FFF0EE; border-left-color:var(--coral); }
+.why-card.blue   { background:#EBF4FB; border-left-color:var(--card-blue); }
+.why-card.purple { background:#F3F0FF; border-left-color:var(--purple); }
+.why-card.teal   { background:#E8F5F5; border-left-color:var(--teal); }
+.why-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(27,58,75,.1); }
+.why-card-label { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; margin-bottom:8px; }
+.why-card.green  .why-card-label { color:var(--green); }
+.why-card.yellow .why-card-label { color:var(--gold); }
+.why-card.pink   .why-card-label { color:var(--coral); }
+.why-card.blue   .why-card-label { color:var(--card-blue); }
+.why-card.purple .why-card-label { color:var(--purple); }
+.why-card.teal   .why-card-label { color:var(--teal); }
+.why-card-title { font-size:15px; font-weight:800; color:var(--navy); margin-bottom:6px; }
+.why-card-body  { font-size:13px; color:var(--text-muted); line-height:1.65; }
 
-/* ═══════════════════════
-   HAMBURGER / MOBILE NAV
-═══════════════════════ */
-#nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
-#nav-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all .2s; }
-#nav-drawer { display: none; position: fixed; top: 74px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); z-index: 99; padding: 20px 16px; flex-direction: column; gap: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.1); }
-#nav-drawer a { font-size: 15px; font-weight: 700; color: var(--navy); text-decoration: none; }
+/* ═══════════════════════════
+   STICKY SCROLL STACK CARDS
+═══════════════════════════ */
+.stack-cards-wrap {
+  position: relative;
+  margin-top: 3rem;
+}
+.stack-card {
+  position: sticky;
+  top: 90px; /* height of nav */
+  margin-bottom: 20px;
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1.5px solid rgba(0,0,0,.06);
+  box-shadow: 0 8px 40px rgba(27,58,75,.10);
+  overflow: hidden;
+  transition: box-shadow .3s;
+  /* Each card gets slightly darker shadow as it stacks */
+}
+.stack-card:nth-child(1) { z-index: 1; }
+.stack-card:nth-child(2) { z-index: 2; }
+.stack-card:nth-child(3) { z-index: 3; }
+.stack-card:nth-child(4) { z-index: 4; }
+.stack-card:nth-child(5) { z-index: 5; }
+.stack-card:nth-child(6) { z-index: 6; margin-bottom: 0; }
 
-/* ═══════════════════════
-   RESPONSIVE — TABLET 1024
-═══════════════════════ */
+/* Colored top accent line per card */
+.stack-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--card-accent);
+  border-radius: 24px 24px 0 0;
+}
+
+.stack-card-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 36px 40px;
+}
+
+/* Left column: number + icon */
+.stack-card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.stack-card-num {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--card-accent);
+  letter-spacing: .1em;
+  opacity: .6;
+}
+.stack-card-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.stack-card-icon svg { width: 26px; height: 26px; }
+
+/* Content */
+.stack-card-content { flex: 1; }
+.stack-card-label {
+  font-size: 12px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 8px;
+}
+.stack-card-title {
+  font-size: 1.45rem; font-weight: 900;
+  color: var(--navy); line-height: 1.2; margin-bottom: 10px;
+}
+.stack-card-body {
+  font-size: 15px; color: var(--text-muted); line-height: 1.75;
+  max-width: 480px;
+}
+
+/* Right image */
+.stack-card-image {
+  width: 200px; height: 140px;
+  border-radius: 16px; overflow: hidden;
+  flex-shrink: 0; box-shadow: 0 8px 24px rgba(27,58,75,.12);
+}
+.stack-card-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+}
+.stack-card:hover .stack-card-image img { transform: scale(1.06); }
+
+/* ── STACK CARDS TABLET (≤1024px) ── */
 @media (max-width: 1024px) {
-  .top-bar { display: none; }
-  nav,.trust-bar,.unlock-banner,footer { padding-left: 32px; padding-right: 32px; }
-  .pad { padding: 64px 32px; }
-  .hero { padding: 48px 32px; gap: 32px; }
-  .tricare-text,.provider-text,.final-cta-text { padding: 56px 40px; }
-  .why-key-grid { grid-template-columns: 1fr 1fr; }
-  .aba-grid { grid-template-columns: repeat(4,1fr); }
-  .expect-grid { grid-template-columns: 1fr 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .locations-inner { grid-template-columns: 1fr; gap: 32px; }
-  .locations-inner .locations-left { max-width: 600px; }
+  .stack-card { top: 74px; }
+  .stack-card-inner { gap: 24px; padding: 28px 32px; }
+  .stack-card-image { width: 160px; height: 120px; }
+  .stack-card-title { font-size: 1.25rem; }
+  .stack-card-body  { font-size: 14px; }
 }
 
-/* ═══════════════════════
-   RESPONSIVE — MOBILE 768
-═══════════════════════ */
+/* ── STACK CARDS MOBILE (≤768px) ── */
 @media (max-width: 768px) {
-  nav { padding: 0 16px; height: 64px; }
-  .nav-right > .btn-coral { display: none; }
-  .nav-right > .nav-phone { display: none; }
-  #nav-toggle { display: flex; }
-  .logo-img { height: 42px; }
-  .logo-name { font-size: 13px; }
-  .logo-sub  { display: none; }
-
-  .trust-bar { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
-  .trust-item { border-right: none; padding: 0; width: calc(50% - 5px); }
-  .secondary-cta-bar { padding: 14px 16px; flex-direction: column; gap: 10px; }
-  .secondary-cta-label { margin-right: 0; }
-  .secondary-cta-actions { gap: 8px; }
-  .scta-btn { font-size: 12px; padding: 7px 14px; }
-
-  .hero { grid-template-columns: 1fr; padding: 36px 16px 44px; min-height: auto; }
-  .hero-title { font-size: 1.9rem; }
-  .hero-sub   { font-size: 15px; max-width: 100%; }
-  .actions    { flex-direction: column; }
-  .actions a  { text-align: center; }
-
-  .pad { padding: 52px 16px; }
-  .section-title { font-size: 1.75rem; }
-
-  .why-key-intro { grid-template-columns: 1fr; }
-  .why-key-img   { height: 240px; }
-  .why-key-grid  { grid-template-columns: 1fr; gap: 12px; }
-
-  .tricare-section { grid-template-columns: 1fr; }
-  .tricare-img { min-height: 240px; order: -1; }
-  .tricare-text { padding: 40px 16px; }
-  .tricare-text .actions { flex-direction: column; }
-  .tricare-float { display: none; }
-
-  .aba-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
-  .aba-card { padding: 1.5rem .75rem; }
-
-  .steps-row { flex-direction: column; align-items: center; gap: 28px; }
-  .steps-row::before { display: none; }
-  .step { width: 100%; max-width: 280px; }
-
-  .expect-grid { grid-template-columns: 1fr; gap: 14px; }
-
-  .locations { padding: 52px 16px; }
-  .locations-inner { grid-template-columns: 1fr; gap: 28px; }
-  .loc-cards { grid-template-columns: 1fr; gap: 14px; }
-
-  .faq { padding: 52px 16px; }
-  .faq-q { font-size: 14px; padding: 18px 16px; }
-  .faq-a { padding: 0 16px 18px; }
-
-  .provider { grid-template-columns: 1fr; }
-  .provider-img { min-height: 240px; order: -1; }
-  .provider-text { padding: 40px 16px; }
-  .provider-text .actions { flex-direction: column; }
-
-  .final-cta { grid-template-columns: 1fr; min-height: auto; }
-  .final-cta-img { min-height: 220px; order: -1; }
-  .final-cta-text { padding: 40px 16px; }
-  .final-cta-text .actions { flex-direction: column; }
-
-  .unlock-banner { padding: 44px 16px; }
-  .unlock-actions { flex-direction: column; align-items: center; }
-
-  footer { padding: 40px 16px 24px; }
-  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-locs-grid { grid-template-columns: 1fr 1fr; }
-  .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
-
-  .form-grid2 { grid-template-columns: 1fr; }
+  /* KEEP sticky — just adjust top to sit below mobile nav */
+  .stack-card {
+    position: sticky;
+    top: 64px;   /* mobile nav height */
+    margin-bottom: 12px;
+  }
+  /* Stack vertically: icon row on top, content below, no image column */
+  .stack-card-inner {
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    padding: 22px 18px;
+  }
+  .stack-card-image { display: none; }
+  .stack-card-title { font-size: 1.1rem; }
+  .stack-card-body  { font-size: 13px; max-width: 100%; }
+  .stack-card-icon  { width: 46px; height: 46px; border-radius: 12px; }
+  .stack-card-icon svg { width: 22px; height: 22px; }
+  .stack-card-num   { font-size: 11px; }
 }
 
-/* ═══════════════════════
-   RESPONSIVE — SMALL 480
-═══════════════════════ */
-@media (max-width: 480px) {
-  .hero-title { font-size: 1.65rem; }
-  .section-title { font-size: 1.5rem; }
-  .trust-item { width: 100%; }
-  .aba-card { padding: 1.25rem .5rem; }
-  .aba-icon { font-size: 28px; }
-  .step-num { width: 44px; height: 44px; font-size: 17px; }
-  .expect-card { padding: 1.5rem 1.25rem; }
-  .loc-flag { height: 140px; }
-  .footer-locs-grid { grid-template-columns: 1fr; }
-  .logo-img { height: 36px; }
+/* ═ WHY KEY section no longer needs grid CSS, keep other styles ═ */
+.testimonials { background:var(--blue-bg); overflow:hidden; }
+.testimonials-header { text-align:center; margin-bottom:3rem; }
+.carousel-track-wrap { position:relative; overflow:hidden; }
+.carousel-track { display:flex; gap:24px; transition:transform .55s cubic-bezier(.4,0,.2,1); }
+.testimonial-card {
+  background:#fff; border-radius:20px; padding:2.25rem 2rem;
+  min-width:360px; flex:0 0 360px;
+  box-shadow:0 4px 20px rgba(27,58,75,.07);
+  position:relative; transition:box-shadow .2s;
+}
+.testimonial-card:hover { box-shadow:0 12px 36px rgba(27,58,75,.12); }
+.tcard-quote { font-size:48px; color:var(--purple); line-height:.8; margin-bottom:12px; font-family:Georgia,serif; }
+.tcard-text  { font-size:15px; color:var(--navy); line-height:1.75; font-weight:600; margin-bottom:1.5rem; font-style:italic; }
+.tcard-stars { color:var(--gold); font-size:18px; margin-bottom:12px; letter-spacing:2px; }
+.tcard-author { display:flex; align-items:center; gap:12px; }
+.tcard-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--coral)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:18px; flex-shrink:0; }
+.tcard-name  { font-size:14px; font-weight:800; color:var(--navy); }
+.tcard-loc   { font-size:12px; color:var(--text-muted); }
+.carousel-controls { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:2.5rem; }
+.carousel-btn { width:44px; height:44px; border-radius:50%; border:2px solid var(--navy); background:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; color:var(--navy); }
+.carousel-btn:hover { background:var(--navy); color:#fff; }
+.carousel-btn svg { width:18px; height:18px; }
+.carousel-dots { display:flex; gap:8px; }
+.carousel-dot { width:8px; height:8px; border-radius:50%; background:rgba(27,58,75,.2); cursor:pointer; transition:all .2s; border:none; }
+.carousel-dot.active { background:var(--purple); width:24px; border-radius:4px; }
+
+/* ═══════════════════════════
+   TRICARE SECTION
+═══════════════════════════ */
+.tricare-section { background:var(--purple); display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:0; }
+.tricare-text { padding:80px 60px; display:flex; flex-direction:column; justify-content:center; }
+.tricare-text .section-body { color:rgba(255,255,255,.8); margin-top:1rem; font-size:16px; }
+.tricare-img-wrap {
+  padding: 48px 48px 48px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tricare-img {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(27, 20, 50, 0.45),
+    0 8px 24px rgba(27, 20, 50, 0.25);
+}
+.tricare-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.tricare-img-overlay { position:absolute; inset:0; background:rgba(123,107,160,.15); border-radius:24px; }
+.tricare-float { position:absolute; bottom:28px; left:28px; background:#fff; border-radius:14px; padding:16px 20px; max-width:260px; box-shadow:0 8px 24px rgba(0,0,0,.15) }
+ to{opacity:1;transform:translateY(0)} }
+.tricare-float-title { font-size:13px; font-weight:800; color:var(--navy); margin-bottom:4px; }
+.tricare-float-body  { font-size:12px; color:var(--text-muted); line-height:1.6; }
+
+/* ═══════════════════════════
+   ABA HELPS — PREMIUM BENTO GRID
+═══════════════════════════ */
+/* ═══════════════════════════
+   ABA HELPS — ICON GRID
+═══════════════════════════ */
+.aba-helps { background:var(--cream); text-align:center; }
+.aba-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:2.5rem; }
+.aba-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  text-align: center;
+  transition: all .3s ease;
+  box-shadow:
+    0 2px 4px rgba(27,58,75,.04),
+    0 6px 16px rgba(27,58,75,.07),
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 -1px 0 rgba(27,58,75,.06) inset;
+  position: relative;
+}
+.aba-card:hover {
+  border-color: var(--purple);
+  transform: translateY(-5px);
+  box-shadow:
+    0 4px 8px rgba(27,58,75,.06),
+    0 16px 40px rgba(123,107,160,.18),
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 -1px 0 rgba(27,58,75,.06) inset;
+}
+.aba-icon-wrap {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  box-shadow:
+    0 4px 12px rgba(27,58,75,.1),
+    0 1px 3px rgba(27,58,75,.08),
+    0 1px 0 rgba(255,255,255,.8) inset;
+  border: 1px solid rgba(255,255,255,.6);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.aba-card:hover .aba-icon-wrap {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow:
+    0 8px 20px rgba(27,58,75,.14),
+    0 2px 6px rgba(27,58,75,.1),
+    0 1px 0 rgba(255,255,255,.8) inset;
+}
+.aba-icon-wrap svg { width:30px; height:30px; }
+.aba-label {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════
+   HOW TO GET STARTED
+═══════════════════════════ */
+.get-started { background:var(--blue-bg); text-align:center; }
+.steps-row { display:flex; align-items:flex-start; position:relative; margin-top:3.5rem; max-width:900px; margin-left:auto; margin-right:auto; }
+.steps-connector { position:absolute; top:26px; left:calc(12.5% + 26px); right:calc(12.5% + 26px); height:3px; border-top:3px dashed var(--purple); pointer-events:none; }
+.step { flex:1; text-align:center; position:relative; z-index:1; padding:0 8px; }
+.step-num { width:52px; height:52px; background:var(--purple); color:#fff; font-size:20px; font-weight:900; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; border:4px solid var(--blue-bg); transition:all .3s; }
+.step:hover .step-num { background:var(--coral); transform:scale(1.1); }
+.step-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:6px; }
+.step-body  { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+/* ═══════════════════════════
+   WHAT TO EXPECT
+═══════════════════════════ */
+.expect { background:#fff; }
+/* ═══════════════════════════
+   WHAT TO EXPECT
+═══════════════════════════ */
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  margin-top: 2.5rem;
+}
+.expect-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity .7s cubic-bezier(.22,1,.36,1),
+    transform .7s cubic-bezier(.22,1,.36,1),
+    box-shadow .3s ease,
+    border-color .3s ease;
+  box-shadow:
+    0 2px 8px rgba(27,58,75,.05),
+    0 8px 24px rgba(27,58,75,.07);
+}
+.expect-card.c1 { transform: translateX(-80px) rotate(-2deg) scale(0.94); }
+.expect-card.c2 { transform: translateY(80px) scale(0.94); }
+.expect-card.c3 { transform: translateX(80px) rotate(2deg) scale(0.94); }
+.expect-card.in-view {
+  opacity: 1;
+  transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  box-shadow:
+    0 4px 12px rgba(27,58,75,.06),
+    0 16px 40px rgba(27,58,75,.10);
+}
+.expect-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 8px 20px rgba(27,58,75,.08), 0 20px 48px rgba(27,58,75,.12);
+  border-color: transparent;
+}
+.expect-card-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .7s .3s cubic-bezier(.4,0,.2,1);
+  border-radius: 16px 16px 0 0;
+}
+.expect-card.c1 .expect-card-bar { background: var(--coral); }
+.expect-card.c2 .expect-card-bar { background: var(--green); }
+.expect-card.c3 .expect-card-bar { background: var(--purple); }
+.expect-card.in-view .expect-card-bar { transform: scaleX(1); }
+.expect-num {
+  font-size: 56px;
+  font-weight: 900;
+  opacity: .07;
+  color: var(--navy);
+  position: absolute;
+  top: 6px; right: 14px;
+  line-height: 1;
+  pointer-events: none;
+  transition: opacity .35s ease, color .35s ease;
+}
+.expect-card.c1:hover .expect-num { opacity: .85; color: var(--coral); }
+.expect-card.c2:hover .expect-num { opacity: .85; color: var(--green); }
+.expect-card.c3:hover .expect-num { opacity: .85; color: var(--purple); }
+.expect-title { font-size:16px; font-weight:800; color:var(--navy); margin-bottom:8px; padding-right:52px; }
+.expect-body  { font-size:14px; color:var(--text-muted); line-height:1.75; }
+@media (max-width:1024px) { .expect-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:768px)  { .expect-grid { grid-template-columns:1fr; gap:14px; } .expect-card.c1,.expect-card.c3 { transform: translateY(80px) scale(0.94); } }
+
+/* ═══════════════════════════
+   LOCATIONS + MAP
+═══════════════════════════ */
+.locations { background:var(--blue-bg); }
+.locations-inner { display:grid; grid-template-columns:1fr 1.6fr; gap:60px; align-items:center; }
+.locations-list { margin-top:1.5rem; display:grid; grid-template-columns:1fr; gap:6px; }
+.locations-list a { font-size:15px; font-weight:600; color:var(--navy); text-decoration:none; display:flex; align-items:center; gap:6px; padding:6px 0; transition:color .2s; }
+.locations-list-arrow { font-size:9px; color:var(--coral); margin-right:6px; flex-shrink:0; }
+.locations-list a:hover { color:var(--purple); }
+.map-svg-wrap { background:#fff; border-radius:16px; padding:1.5rem; box-shadow:0 4px 20px rgba(27,58,75,.08); }
+.map-svg-wrap svg { width:100%; display:block; }
+.map-state { fill:#CBD5E0; stroke:#fff; stroke-width:1.5; transition:fill .25s, filter .25s; cursor:pointer; }
+.map-state:hover { filter:brightness(.9); }
+.map-co { fill:var(--coral); }
+.map-il { fill:var(--gold); }
+.map-nc { fill:var(--gold); }
+.map-legend { display:flex; gap:20px; justify-content:center; margin-top:1rem; flex-wrap:wrap; }
+.map-legend-item { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:var(--navy); }
+.legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+/* ── LOCATION CARDS CAROUSEL ── */
+.loc-carousel-wrap { position:relative; overflow:hidden; margin-top:2.5rem; }
+.loc-carousel-track {
+  display: flex;
+  gap: 24px;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+.loc-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .25s, transform .25s;
+  min-width: 340px;
+  flex: 0 0 340px;
+  box-shadow: 0 4px 16px rgba(27,58,75,.08);
+}
+.loc-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(27,58,75,.14); }
+.loc-flag { height:200px; overflow:hidden; position:relative; }
+.loc-flag img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.loc-card:hover .loc-flag img { transform:scale(1.06); }
+.loc-flag-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(27,45,62,.4)); pointer-events:none; }
+.loc-body { padding:1.25rem 1.4rem 1.6rem; }
+.loc-state { font-size:18px; font-weight:800; color:var(--navy); margin-bottom:5px; }
+.loc-desc  { font-size:13px; color:var(--text-muted); margin-bottom:14px; line-height:1.55; }
+.loc-link  { background:var(--coral); color:#fff; padding:8px 20px; border-radius:6px; font-size:13px; font-weight:700; text-decoration:none; display:inline-block; transition:all .2s; }
+.loc-link:hover { background:var(--coral-h); transform:translateY(-1px); }
+.loc-carousel-controls { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:2rem; }
+.loc-carousel-btn {
+  width:44px; height:44px; border-radius:50%;
+  border:2px solid var(--navy); background:#fff;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:all .2s; color:var(--navy);
+}
+.loc-carousel-btn:hover { background:var(--navy); color:#fff; }
+.loc-carousel-btn svg { width:18px; height:18px; }
+.loc-carousel-dots { display:flex; gap:8px; }
+.loc-carousel-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(27,58,75,.2); cursor:pointer;
+  transition:all .2s; border:none;
+}
+.loc-carousel-dot.active { background:var(--coral); width:24px; border-radius:4px; }
+@media(max-width:768px){
+  .loc-card{ min-width:280px; flex:0 0 280px; }
+  .loc-flag{ height:160px; }
+}
+
+/* ═══════════════════════════
+   FAQ ACCORDION
+═══════════════════════════ */
+.faq-section { background:#F3F0FF; }
+.faq-inner { max-width:820px; margin:0 auto; }
+.faq-list  { margin-top:2.5rem; display:flex; flex-direction:column; gap:10px; }
+.faq-item  { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 2px 8px rgba(27,58,75,.05); transition:box-shadow .2s; }
+.faq-item.open { box-shadow:0 6px 20px rgba(123,107,160,.12); }
+.faq-q { width:100%; background:none; border:none; padding:20px 24px; font-size:15px; font-weight:700; color:var(--navy); text-align:left; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:'Nunito',sans-serif; transition:color .2s; }
+.faq-q:hover { color:var(--purple); }
+.faq-icon { width:28px; height:28px; border-radius:50%; background:var(--blue-bg); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s, transform .3s; }
+.faq-item.open .faq-icon { background:var(--purple); transform:rotate(45deg); }
+.faq-icon svg { width:14px; height:14px; stroke:var(--navy); transition:stroke .2s; }
+.faq-item.open .faq-icon svg { stroke:#fff; }
+.faq-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .4s; }
+.faq-body-inner { padding:0 24px 20px; font-size:14px; color:var(--text-muted); line-height:1.8; }
+.faq-body-inner a { color:var(--coral); }
+.faq-item.open .faq-body { max-height:300px; }
+
+/* ═══════════════════════════
+   PROVIDER
+═══════════════════════════ */
+.provider { background:var(--cream); display:grid; grid-template-columns:1fr 1fr; align-items:center; }
+.provider-img { overflow:hidden; min-height:420px; }
+.provider-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.provider-img:hover img { transform:scale(1.04); }
+.provider-text { padding:80px 60px; }
+
+/* ═══════════════════════════
+   FINAL CTA
+═══════════════════════════ */
+.final-cta { background:var(--purple); display:grid; grid-template-columns:1fr 1fr; min-height:480px; align-items:center; }
+.final-cta-img-wrap {
+  padding: 48px 0 48px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.final-cta-img {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(27, 20, 50, 0.55),
+    0 8px 24px rgba(27, 20, 50, 0.35);
+}
+.final-cta-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.final-cta-overlay { position:absolute; inset:0; background:rgba(123,107,160,.2); border-radius:24px; }
+.final-cta-text { padding:5rem; display:flex; flex-direction:column; justify-content:center; }
+.final-cta-text .section-body { color:rgba(255,255,255,.8); margin-top:1rem; }
+
+/* ═══════════════════════════
+   UNLOCK BANNER
+═══════════════════════════ */
+.unlock-banner { background:var(--purple); text-align:center; padding:60px; border-top:1px solid rgba(255,255,255,.1); }
+.unlock-icon  { font-size:40px; margin-bottom:12px; }
+.unlock-title { font-size:1.75rem; font-weight:900; color:#fff; }
+.unlock-title span { color:var(--gold); }
+.unlock-actions { margin-top:1.75rem; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+/* ═══════════════════════════
+   FOOTER
+═══════════════════════════ */
+footer { background:#1E2D42; padding:56px 60px 28px; color:#9FB2C4; }
+.footer-top { display:grid; grid-template-columns:1.5fr 1.5fr 1fr; gap:3rem; padding-bottom:2.5rem; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:2rem; }
+.footer-logo-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.footer-logo-img { height:52px; }
+.footer-brand    { font-size:15px; font-weight:800; color:#fff; }
+.footer-brand-sub { font-size:11px; color:var(--gold); font-weight:700; text-transform:uppercase; }
+.footer-tagline  { font-size:13px; color:#9FB2C4; line-height:1.7; margin-bottom:14px; }
+.footer-btn      { display:inline-block; background:var(--coral); color:#fff; padding:8px 20px; border-radius:6px; font-size:13px; font-weight:700; text-decoration:none; transition:background .2s; }
+.footer-btn:hover { background:var(--coral-h); }
+.footer-col h3   { font-size:13px; font-weight:800; color:#fff; margin-bottom:14px; text-transform:uppercase; letter-spacing:.07em; }
+.footer-locs-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; }
+.footer-col a    { display:block; font-size:14px; color:#9FB2C4; text-decoration:none; margin-bottom:6px; transition:color .2s; }
+.footer-col a:hover { color:#fff; }
+.footer-contact-text { font-size:14px; color:#CBD8E4; line-height:1.9; }
+.footer-contact-link { color:var(--gold); font-weight:700; text-decoration:none; font-size:14px; display:inline-block; margin-top:10px; }
+.footer-bottom { display:flex; justify-content:space-between; font-size:12px; color:#4A6070; flex-wrap:wrap; gap:8px; }
+.footer-bottom a { color:#4A6070; text-decoration:none; }
+
+/* ═══════════════════════════
+   RESPONSIVE
+═══════════════════════════ */
+@media(max-width:1024px){
+  .top-bar{display:none;}
+  nav,.trust-bar,.secondary-cta-bar,.unlock-banner,footer{padding-left:32px;padding-right:32px;}
+  .pad{padding:64px 32px;}
+  .hero{padding:48px 32px;gap:32px;}
+  .tricare-text,.provider-text,.final-cta-text{padding:56px 40px;}
+  .tricare-img-wrap{padding:40px 32px 40px 0;}
+  .tricare-img{height:360px;}
+  .final-cta-img-wrap{padding:40px 0 40px 32px;}
+  .final-cta-img{height:360px;}
+  .why-key-grid{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.1);}
+  .stat-item:nth-child(even){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .aba-grid{grid-template-columns:repeat(4,1fr);}
+  .expect-grid{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .locations-inner{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  nav{padding:0 16px;height:64px;}
+  .nav-right>.btn-coral,.nav-right>.nav-phone{display:none;}
+  #nav-toggle{display:flex;}
+  .logo-img{height:42px;}
+  .logo-sub{display:none;}
+  .trust-bar{height:56px;}
+  .trust-item{font-size:13px;padding:0 16px;height:56px;}
+  .trust-item-pill{padding:6px 14px 6px 8px;}
+  .trust-check{width:20px;height:20px;font-size:10px;}
+  .trust-fade-left,.trust-fade-right{width:40px;}
+  .secondary-cta-bar{padding:14px 16px;flex-direction:column;}
+  .secondary-cta-actions{gap:8px;}
+  .scta-btn{font-size:12px;padding:7px 14px;}
+  .hero{grid-template-columns:1fr;padding:36px 16px 44px;min-height:auto;}
+  .hero-title{font-size:1.9rem;}
+  .hero-sub{font-size:15px;}
+  .actions{flex-direction:column;}
+  .actions a{text-align:center;}
+  .pad{padding:52px 16px;}
+  .section-title{font-size:1.7rem;}
+  .stats-strip{padding:48px 32px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding:24px 16px;}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.1);}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-num{font-size:2.8rem;}
+  .why-key-intro{grid-template-columns:1fr;}
+  .why-key-img{height:240px;}
+  .why-key-grid{grid-template-columns:1fr;gap:12px;}
+  .testimonials{padding:52px 16px;}
+  .testimonial-card{min-width:280px;flex:0 0 280px;}
+  .tricare-section{grid-template-columns:1fr;}
+  .tricare-img-wrap{padding:0 16px 40px;order:-1;}
+  .tricare-img{height:260px;}
+  .tricare-text{padding:40px 16px;}
+  .tricare-text .actions{flex-direction:column;}
+  .tricare-float{display:none;}
+  .aba-intro-grid{grid-template-columns:1fr!important;}
+  .aba-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .aba-card{padding:1.5rem .75rem;}
+  .steps-row{flex-direction:column;align-items:center;gap:28px;}
+  .steps-connector{display:none;}
+  .step{width:100%;max-width:280px;}
+  .expect-grid{grid-template-columns:1fr;gap:14px;}
+  .locations{padding:52px 16px;}
+  .loc-card{min-width:240px;flex:0 0 240px;}
+  .loc-flag{height:140px;}
+  .faq-section{padding:52px 16px;}
+  .provider{grid-template-columns:1fr;}
+  .provider-img{min-height:240px;order:-1;}
+  .provider-text{padding:40px 16px;}
+  .provider-text .actions{flex-direction:column;}
+  .final-cta{grid-template-columns:1fr;min-height:auto;}
+  .final-cta-img-wrap{padding:24px 16px 0;order:-1;}
+  .final-cta-img{height:260px;}
+  .final-cta-text{padding:40px 16px;}
+  .final-cta-text .actions{flex-direction:column;}
+  .unlock-banner{padding:44px 16px;}
+  .unlock-actions{flex-direction:column;align-items:center;}
+  footer{padding:40px 16px 24px;}
+  .footer-top{grid-template-columns:1fr;gap:2rem;}
+  .footer-locs-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;}
+}
+@media(max-width:480px){
+  .hero-title{font-size:1.65rem;}
+  .section-title{font-size:1.5rem;}
+  .trust-item{width:100%;}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:0;}
+  .stat-num{font-size:2.2rem;}
+  .stat-plus{font-size:1.5rem;}
+  .aba-card{padding:1.25rem .5rem;}
+  .aba-icon-wrap{width:52px;height:52px;}
+  .aba-icon-wrap svg{width:24px;height:24px;}
+  .expect-card{padding:1.5rem 1.25rem;}
+  .footer-locs-grid{grid-template-columns:1fr;}
+  .logo-img{height:36px;}
+  .form-grid2{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -515,13 +883,26 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
     <a href="tel:8883294535">📞 (888) 329-4535</a>
     <a href="mailto:webinfo@keyautismservices.com">✉ webinfo@keyautismservices.com</a>
   </div>
-  <a href="#form-section" class="btn btn-outline" style="font-size:13px;padding:6px 16px;border-radius:6px;">↑ Contact Us</a>
+  <a href="#hero-form" style="font-size:13px;font-weight:700;color:var(--navy);text-decoration:none;border:1.5px solid var(--border);padding:5px 14px;border-radius:6px;">↑ Contact Us</a>
 </div>
 
 <!-- NAV -->
 <nav>
   <a href="https://www.keyautismservices.com" class="nav-logo">
-    <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c7342d5be781812447fe7_Screenshot%202026-07-19%20at%2011.48.12%E2%80%AFAM-p-500.png" alt="Key Autism Services" class="logo-img">
+    <!-- Colorful key logo mark matching real brand -->
+    <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <rect width="52" height="52" rx="12" fill="#1B3A4B"/>
+      <!-- Key shape -->
+      <circle cx="20" cy="22" r="8" fill="none" stroke="#F5A623" stroke-width="3"/>
+      <circle cx="20" cy="22" r="4" fill="#F5A623" opacity=".4"/>
+      <rect x="26" y="20" width="14" height="3.5" rx="1.5" fill="#E8614A"/>
+      <rect x="34" y="23.5" width="3.5" height="5" rx="1.5" fill="#7B6BA0"/>
+      <rect x="28" y="23.5" width="3.5" height="4" rx="1.5" fill="#5BA85A"/>
+      <!-- People silhouettes at top -->
+      <circle cx="17" cy="8"  r="2.5" fill="#7B6BA0" opacity=".8"/>
+      <circle cx="26" cy="6"  r="3"   fill="#E8614A" opacity=".9"/>
+      <circle cx="35" cy="8"  r="2.5" fill="#5BA85A" opacity=".8"/>
+    </svg>
     <div class="logo-text">
       <span class="logo-name">Key Autism Services</span>
       <span class="logo-sub">ABA Therapy</span>
@@ -529,50 +910,44 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
   </a>
   <div class="nav-right" style="display:flex;align-items:center;gap:16px;">
     <a href="tel:8883294535" class="nav-phone">(888) 329-4535</a>
-    <a href="#form-section" class="btn btn-coral">Get Started Today</a>
-    <button id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#hero-form" class="btn btn-coral">Get Started Today</a>
+    <button id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div id="nav-drawer">
   <a href="tel:8883294535">📞 (888) 329-4535</a>
   <a href="#get-started" onclick="closeDrawer()">How to Get Started</a>
   <a href="#faq-section" onclick="closeDrawer()">FAQ</a>
-  <a href="#form-section" onclick="closeDrawer()" class="btn btn-coral" style="text-align:center;padding:13px 24px;">Get Started Today</a>
+  <a href="#hero-form" onclick="closeDrawer()" class="btn btn-coral" style="text-align:center;padding:13px 24px;">Get Started Today</a>
 </div>
 
 <!-- ══ HERO ══ -->
-<div class="hero">
-  <div>
+<div class="hero" id="hero-form" style="position:relative;">
+  <!-- subtle background image layer -->
+  <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1588776814546-1ffedbe27b65?w=1600&q=50') center/cover no-repeat;opacity:0.05;pointer-events:none;z-index:0;"></div>
+  <div style="position:relative;z-index:1;">
     <div class="hero-badge"><span class="hero-badge-dot"></span> Now Accepting TRICARE®</div>
     <h1 class="hero-title">Proudly Accepting <span>TRICARE®</span><br>Personalized ABA Therapy for Military Families</h1>
     <p class="hero-sub">Military families make countless sacrifices. At Key Autism Services, we're honored to support yours by providing compassionate, evidence-based ABA therapy designed around your child's unique strengths and goals.</p>
-    <div class="actions">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Get Started</a>
+    <div class="actions hero-actions">
+      <a href="#hero-form" class="btn btn-coral btn-coral-lg">Get Started</a>
       <a href="tel:8883294535" class="btn btn-outline btn-coral-lg">Contact Our Team</a>
     </div>
-  </div>
-
-  <!-- HERO FORM (matches real site layout) -->
-  <div class="hero-form-card">
+  </div><!-- end hero content -->
+  <div class="hero-form-card" style="position:relative;z-index:1;">
     <div class="hero-form-title">Request Information</div>
     <div class="hero-form-sub">Our intake team will reach out within 1–2 business days.</div>
     <div id="hero-form-fields">
       <div class="form-grid2">
-        <div class="form-group"><label>Name (required)</label><input class="form-input" type="text" id="h-name" placeholder="Name"></div>
-        <div class="form-group"><label>Email (required)</label><input class="form-input" type="email" id="h-email" placeholder="Email"></div>
+        <div><label class="form-label">Name (required)</label><input class="form-input" type="text" id="h-name" placeholder="Name"></div>
+        <div><label class="form-label">Email (required)</label><input class="form-input" type="email" id="h-email" placeholder="Email"></div>
       </div>
       <div class="form-grid2" style="margin-bottom:12px;">
-        <div class="form-group"><label>Phone (required)</label><input class="form-input" type="tel" id="h-phone" placeholder="Phone number"></div>
-        <div class="form-group"><label>Zip Code (required)</label><input class="form-input" type="text" id="h-zip" placeholder="Zip Code"></div>
+        <div><label class="form-label">Phone (required)</label><input class="form-input" type="tel" id="h-phone" placeholder="Phone number"></div>
+        <div><label class="form-label">Zip Code (required)</label><input class="form-input" type="text" id="h-zip" placeholder="Zip Code"></div>
       </div>
-      <div class="form-group" style="margin-bottom:12px;">
-        <label>State (required)</label>
-        <select class="form-select" id="h-state">
-          <option value="">Select one...</option>
-          <option>Colorado</option><option>Illinois</option><option>North Carolina</option><option>Other</option>
-        </select>
+      <div style="margin-bottom:12px;"><label class="form-label">State (required)</label>
+        <select class="form-select" id="h-state"><option value="">Select one...</option><option>Colorado</option><option>Illinois</option><option>North Carolina</option><option>Other</option></select>
       </div>
       <button class="form-submit" onclick="submitHeroForm()">Get Started Today</button>
       <p class="form-note">🔒 Your information is secure and private.</p>
@@ -585,97 +960,305 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
   </div>
 </div>
 
-<!-- ══ TRUST BAR ══ -->
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-check">✓</div> TRICARE Accepted</div>
-  <div class="trust-item"><div class="trust-check">✓</div> Experienced BCBAs</div>
-  <div class="trust-item"><div class="trust-check">✓</div> Family-Centered Care</div>
-  <div class="trust-item"><div class="trust-check">✓</div> Personalized ABA Therapy</div>
-  <div class="trust-item"><div class="trust-check">✓</div> Flexible Service Options</div>
-  <div class="trust-item"><div class="trust-check">✓</div> Evidence-Based Care</div>
+<!-- ══ TRUST BAR — PREMIUM INFINITE ROLLING MARQUEE ══ -->
+<div class="trust-bar" aria-label="Key trust signals">
+  <div class="trust-fade-left"></div>
+  <div class="trust-fade-right"></div>
+  <div class="marquee-track" id="marquee-track">
+    <!-- Set 1 -->
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> TRICARE Accepted</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Experienced BCBAs</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Family-Centered Care</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Personalized ABA Therapy</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Flexible Service Options</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Evidence-Based Care</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Military Family Support</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> 1–2 Day Response Time</div></div>
+    <span class="trust-dot"></span>
+    <!-- Set 2 — exact duplicate for seamless loop -->
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> TRICARE Accepted</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Experienced BCBAs</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Family-Centered Care</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Personalized ABA Therapy</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Flexible Service Options</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Evidence-Based Care</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> Military Family Support</div></div>
+    <span class="trust-dot"></span>
+    <div class="trust-item"><div class="trust-item-pill"><div class="trust-check">✓</div> 1–2 Day Response Time</div></div>
+    <span class="trust-dot"></span>
+  </div>
 </div>
 
 <!-- ══ SECONDARY CTA BAR ══ -->
 <div class="secondary-cta-bar">
   <span class="secondary-cta-label">Ready to take the next step?</span>
   <div class="secondary-cta-actions">
-    <a href="#form-section" class="scta-btn scta-primary">Get Started Today</a>
+    <a href="#hero-form" class="scta-btn scta-primary">Get Started Today</a>
     <a href="tel:8883294535" class="scta-btn scta-outline">Contact Our Team</a>
-    <a href="#form-section" class="scta-btn scta-outline">Verify Your Benefits</a>
+    <a href="#hero-form" class="scta-btn scta-outline">Verify Your Benefits</a>
     <a href="tel:8883294535" class="scta-btn scta-outline">Speak With Our Intake Team</a>
-    <a href="#form-section" class="scta-btn scta-outline">Request Information</a>
+    <a href="#hero-form" class="scta-btn scta-outline">Request Information</a>
   </div>
 </div>
+
+<!-- ══ STATS COUNTER STRIP ══ -->
+<section class="stats-strip" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=40');background-size:cover;background-position:center;">
+  <div class="stats-grid">
+
+    <div class="stat-item reveal delay-1">
+      <div class="stat-value-row">
+        <span class="stat-num" data-target="245">0</span>
+        <span class="stat-plus">+</span>
+      </div>
+      <div class="stat-label">Products Delivered</div>
+    </div>
+
+    <div class="stat-item reveal delay-2">
+      <div class="stat-value-row">
+        <span class="stat-num" data-target="7">0</span>
+      </div>
+      <div class="stat-label">States Served</div>
+    </div>
+
+    <div class="stat-item reveal delay-3">
+      <div class="stat-value-row">
+        <span class="stat-num" data-target="98">0</span>
+        <span class="stat-plus">%</span>
+      </div>
+      <div class="stat-label">Family Satisfaction</div>
+    </div>
+
+    <div class="stat-item reveal delay-4">
+      <div class="stat-value-row">
+        <span class="stat-num" data-target="2">0</span>
+      </div>
+      <div class="stat-label">Business Days to Contact</div>
+    </div>
+
+  </div>
+</section>
 
 <!-- ══ WHY KEY ══ -->
 <section class="why-key pad">
   <div class="container">
     <div class="why-key-intro">
-      <div>
+      <div class="reveal-left">
         <p class="eyebrow">Why Key Autism Services</p>
         <h2 class="section-title">Trusted by Families.<br>Focused on Your Child.</h2>
         <p class="section-body">Tailored care. Measurable outcomes. Every success celebrated.</p>
         <div class="actions">
-          <a href="#form-section" class="btn btn-coral">Speak With An Expert</a>
+          <a href="#hero-form" class="btn btn-coral">Speak With An Expert</a>
           <a href="tel:8883294535" class="btn btn-outline">Speak With Our Intake Team</a>
         </div>
       </div>
-      <div class="why-key-img">
-        <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c74ca32de169d77200748_christina-matviikiv-V92xhN7KSeU-unsplash-p-800.jpg" alt="Therapist with child during ABA session">
+      <div class="why-key-img reveal-right" style="position:relative;">
+        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=80" alt="Therapist with child during ABA session"><div class="why-key-img-overlay"></div>
       </div>
     </div>
-    <div class="why-key-grid">
-      <div class="why-card green">
-        <div class="why-card-label">Experienced BCBAs</div>
-        <div class="why-card-title">Board Certified Behavior Analysts</div>
-        <div class="why-card-body">Lead every case with clinical expertise and genuine compassion for each child and family.</div>
+    <!-- STICKY SCROLL STACK -->
+    <div class="stack-cards-wrap">
+      <div class="stack-card" data-color="green" style="--card-accent:#5BA85A;--card-bg:#EFF5E8;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">01</div>
+            <div class="stack-card-icon" style="background:#5BA85A20;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#5BA85A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#5BA85A;">Experienced BCBAs</div>
+            <div class="stack-card-title">Board Certified Behavior Analysts</div>
+            <div class="stack-card-body">Lead every case with clinical expertise and genuine compassion for each child and family we serve.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=500&q=80" alt="BCBA therapist">
+          </div>
+        </div>
       </div>
-      <div class="why-card yellow">
-        <div class="why-card-label">Individualized Plans</div>
-        <div class="why-card-title">Tailored Treatment Plans</div>
-        <div class="why-card-body">Every program is built around your child's unique strengths, goals, and family dynamic.</div>
+
+      <div class="stack-card" data-color="yellow" style="--card-accent:#F5A623;--card-bg:#FFF8E6;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">02</div>
+            <div class="stack-card-icon" style="background:#F5A62320;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#F5A623;">Individualized Plans</div>
+            <div class="stack-card-title">Tailored Treatment Plans</div>
+            <div class="stack-card-body">Built around your child's unique strengths, goals, and family dynamic — no two plans are ever the same.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=500&q=80" alt="Therapist with child">
+          </div>
+        </div>
       </div>
-      <div class="why-card pink">
-        <div class="why-card-label">Family Collaboration</div>
-        <div class="why-card-title">You're Part of the Team</div>
-        <div class="why-card-body">We keep parents and caregivers informed and involved every step of the way.</div>
+
+      <div class="stack-card" data-color="pink" style="--card-accent:#E8614A;--card-bg:#FFF0EE;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">03</div>
+            <div class="stack-card-icon" style="background:#E8614A20;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#E8614A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#E8614A;">Family Collaboration</div>
+            <div class="stack-card-title">You're Part of the Team</div>
+            <div class="stack-card-body">Parents and caregivers are informed and involved every step of the way — because your insight shapes the therapy.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=500&q=80" alt="Family collaboration">
+          </div>
+        </div>
       </div>
-      <div class="why-card blue">
-        <div class="why-card-label">Flexible Care Options</div>
-        <div class="why-card-title">Therapy That Fits Your Life</div>
-        <div class="why-card-body">Home, clinic, school, and community settings — wherever your family needs support.</div>
+
+      <div class="stack-card" data-color="blue" style="--card-accent:#3A7CA5;--card-bg:#EBF4FB;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">04</div>
+            <div class="stack-card-icon" style="background:#3A7CA520;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3A7CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#3A7CA5;">Flexible Care Options</div>
+            <div class="stack-card-title">Therapy That Fits Your Life</div>
+            <div class="stack-card-body">Home, clinic, school, and community settings — wherever your family needs support, we show up.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1544776193-359ef9e9bde9?w=500&q=80" alt="Flexible therapy settings">
+          </div>
+        </div>
       </div>
-      <div class="why-card purple">
-        <div class="why-card-label">Ongoing Support</div>
-        <div class="why-card-title">Continuous Clinical Support</div>
-        <div class="why-card-body">Regular progress reviews ensure your child's program evolves as they grow and succeed.</div>
+
+      <div class="stack-card" data-color="purple" style="--card-accent:#7B6BA0;--card-bg:#F3F0FF;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">05</div>
+            <div class="stack-card-icon" style="background:#7B6BA020;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7B6BA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#7B6BA0;">Ongoing Support</div>
+            <div class="stack-card-title">Continuous Clinical Support</div>
+            <div class="stack-card-body">Regular progress reviews ensure your child's program evolves as they grow, learn, and achieve new milestones.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=500&q=80" alt="Ongoing clinical support">
+          </div>
+        </div>
       </div>
-      <div class="why-card teal">
-        <div class="why-card-label">Compassionate Care</div>
-        <div class="why-card-title">Heart-Centered Approach</div>
-        <div class="why-card-body">Our team genuinely cares — for the child in front of us and the family surrounding them.</div>
+
+      <div class="stack-card" data-color="teal" style="--card-accent:#3A8C8C;--card-bg:#E8F5F5;">
+        <div class="stack-card-inner">
+          <div class="stack-card-left">
+            <div class="stack-card-num">06</div>
+            <div class="stack-card-icon" style="background:#3A8C8C20;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3A8C8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+          </div>
+          <div class="stack-card-content">
+            <div class="stack-card-label" style="color:#3A8C8C;">Compassionate Care</div>
+            <div class="stack-card-title">Heart-Centered Approach</div>
+            <div class="stack-card-body">We genuinely care — for the child in front of us and the entire family surrounding them, every single day.</div>
+          </div>
+          <div class="stack-card-image">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=500&q=80" alt="Compassionate care">
+          </div>
+        </div>
       </div>
+    </div><!-- end stack-cards-wrap -->
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS CAROUSEL ══ -->
+<section class="testimonials pad" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=30');background-size:cover;background-position:center top;background-blend-mode:soft-light;">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <p class="eyebrow eyebrow-center eyebrow-purple">Families Trust Us</p>
+      <h2 class="section-title section-title-center">What Military Families Are Saying</h2>
+    </div>
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="carousel-track">
+        <div class="testimonial-card">
+          <div class="tcard-quote">"</div>
+          <div class="tcard-stars">★★★★★</div>
+          <div class="tcard-text">Key Autism Services made navigating TRICARE so simple. They handled every step and our son started therapy within weeks of my call. We couldn't be more grateful.</div>
+          <div class="tcard-author"><div class="tcard-avatar">S</div><div><div class="tcard-name">Sarah M.</div><div class="tcard-loc">Military Family · Colorado</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-quote">"</div>
+          <div class="tcard-stars">★★★★★</div>
+          <div class="tcard-text">As a military family we've moved three times. Key Autism Services helped us transition services smoothly each time. They truly understand what our family goes through.</div>
+          <div class="tcard-author"><div class="tcard-avatar">J</div><div><div class="tcard-name">James R.</div><div class="tcard-loc">Military Family · North Carolina</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-quote">"</div>
+          <div class="tcard-stars">★★★★★</div>
+          <div class="tcard-text">The BCBA assigned to our daughter is exceptional. She built a plan that fits our military schedule and our daughter has made incredible progress in just 4 months.</div>
+          <div class="tcard-author"><div class="tcard-avatar">A</div><div><div class="tcard-name">Amanda T.</div><div class="tcard-loc">Military Family · Illinois</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-quote">"</div>
+          <div class="tcard-stars">★★★★★</div>
+          <div class="tcard-text">I was nervous about the first call. The intake team was so kind and patient. They verified our TRICARE coverage the same day and answered every single question I had.</div>
+          <div class="tcard-author"><div class="tcard-avatar">M</div><div><div class="tcard-name">Maria K.</div><div class="tcard-loc">Military Family · Colorado</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tcard-quote">"</div>
+          <div class="tcard-stars">★★★★★</div>
+          <div class="tcard-text">Finding a provider that accepts TRICARE and actually understands our lifestyle was a challenge — until we found Key Autism Services. They are absolutely outstanding.</div>
+          <div class="tcard-author"><div class="tcard-avatar">D</div><div><div class="tcard-name">David L.</div><div class="tcard-loc">Military Family · North Carolina</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
 <!-- ══ TRICARE SECTION ══ -->
 <div class="tricare-section">
-  <div class="tricare-text">
+  <div class="tricare-text reveal-left">
     <p class="eyebrow eyebrow-gold">TRICARE Coverage</p>
     <h2 class="section-title section-title-white">Using Your TRICARE Benefits Has Never Been Easier</h2>
     <p class="section-body">Finding autism services shouldn't be another challenge. Our team can help guide you through understanding your benefits, navigating the intake process, and getting your child connected to the care they need.</p>
     <div class="actions">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Verify Your Benefits</a>
+      <a href="#hero-form" class="btn btn-coral btn-coral-lg">Verify Your Benefits</a>
       <a href="tel:8883294535" class="btn-outline-white btn-coral-lg">Speak With Our Intake Team</a>
     </div>
   </div>
-  <div class="tricare-img">
-    <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c73be4c8783adb4240cd4_vitaly-gariev-aeurI5QKKOU-unsplash-p-1080.jpg" alt="Family receiving ABA therapy support">
-    <div class="tricare-img-overlay"></div>
-    <div class="tricare-float">
-      <div class="tricare-float-title">📋 We Handle the Paperwork</div>
-      <div class="tricare-float-body">Our intake team verifies your TRICARE benefits so you can focus on your child, not the admin.</div>
+  <div class="tricare-img-wrap reveal-right">
+    <div class="tricare-img">
+      <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1200&q=80" alt="Family receiving ABA therapy support">
+      <div class="tricare-img-overlay"></div>
+      <div class="tricare-float">
+        <div class="tricare-float-title">📋 We Handle the Paperwork</div>
+        <div class="tricare-float-body">Our intake team verifies your TRICARE benefits so you can focus on your child, not the admin.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -683,69 +1266,29 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
 <!-- ══ ABA HELPS ══ -->
 <section class="aba-helps pad">
   <div class="container">
-    <p class="eyebrow eyebrow-center">What ABA Therapy Can Help With</p>
-    <h2 class="section-title section-title-center">Skills That Last a Lifetime</h2>
-    <div class="aba-grid">
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#EFF5E8;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5BA85A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <div class="aba-label">Communication</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:3rem;" class="aba-intro-grid">
+      <div class="reveal-left">
+        <p class="eyebrow" style="text-align:left;color:var(--coral);">What ABA Therapy Can Help With</p>
+        <h2 class="section-title" style="text-align:left;">Skills That Last a Lifetime</h2>
+        <p class="section-body">Applied Behavior Analysis helps children with autism build essential skills across every area of life — from communication and social connection to independence and daily routines.</p>
       </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#EBF4FB;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3A7CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="aba-label">Social Skills</div>
+      <div class="reveal-right" style="border-radius:20px;overflow:hidden;height:300px;box-shadow:0 16px 40px rgba(27,58,75,.12);">
+        <img src="https://images.unsplash.com/photo-1544776193-359ef9e9bde9?w=900&q=80" alt="Child in ABA therapy session" style="width:100%;height:100%;object-fit:cover;">
       </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#FFF8E6;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <div class="aba-label">Daily Living Skills</div>
-      </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#FFF0EE;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#E8614A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="aba-label">Behavior Support</div>
-      </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#F3F0FF;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7B6BA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <div class="aba-label">School Readiness</div>
-      </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#E8F5F5;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3A8C8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="aba-label">Independence</div>
-      </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#EFF5E8;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5BA85A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-        </div>
-        <div class="aba-label">Play Skills</div>
-      </div>
-
-      <div class="aba-card">
-        <div class="aba-icon-wrap" style="background:#EBF4FB;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3A7CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
-        <div class="aba-label">Family Training</div>
-      </div>
-
     </div>
-    <div style="text-align:center; margin-top:2.5rem;">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Verify Your Benefits</a>
+    </div><!-- end aba-intro-grid -->
+    <div class="aba-grid">
+      <div class="aba-card reveal delay-1"><div class="aba-icon-wrap" style="background:#EFF5E8;"><svg viewBox="0 0 24 24" fill="none" stroke="#5BA85A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="aba-label">Communication</div></div>
+      <div class="aba-card reveal delay-2"><div class="aba-icon-wrap" style="background:#EBF4FB;"><svg viewBox="0 0 24 24" fill="none" stroke="#3A7CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="aba-label">Social Skills</div></div>
+      <div class="aba-card reveal delay-3"><div class="aba-icon-wrap" style="background:#FFF8E6;"><svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="aba-label">Daily Living Skills</div></div>
+      <div class="aba-card reveal delay-4"><div class="aba-icon-wrap" style="background:#FFF0EE;"><svg viewBox="0 0 24 24" fill="none" stroke="#E8614A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="aba-label">Behavior Support</div></div>
+      <div class="aba-card reveal delay-1"><div class="aba-icon-wrap" style="background:#F3F0FF;"><svg viewBox="0 0 24 24" fill="none" stroke="#7B6BA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="aba-label">School Readiness</div></div>
+      <div class="aba-card reveal delay-2"><div class="aba-icon-wrap" style="background:#E8F5F5;"><svg viewBox="0 0 24 24" fill="none" stroke="#3A8C8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="aba-label">Independence</div></div>
+      <div class="aba-card reveal delay-3"><div class="aba-icon-wrap" style="background:#EFF5E8;"><svg viewBox="0 0 24 24" fill="none" stroke="#5BA85A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div><div class="aba-label">Play Skills</div></div>
+      <div class="aba-card reveal delay-4"><div class="aba-icon-wrap" style="background:#EBF4FB;"><svg viewBox="0 0 24 24" fill="none" stroke="#3A7CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="aba-label">Family Training</div></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="#hero-form" class="btn btn-coral btn-coral-lg">Verify Your Benefits</a>
     </div>
   </div>
 </section>
@@ -753,41 +1296,39 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
 <!-- ══ HOW TO GET STARTED ══ -->
 <section class="get-started pad" id="get-started">
   <div class="container">
-    <p class="eyebrow eyebrow-center eyebrow-purple">How to Get Started</p>
-    <h2 class="section-title section-title-center">Your Journey Starts Here</h2>
-    <div class="steps-row">
-      <div class="step"><div class="step-num">1</div><div class="step-title">Reach Out</div><div class="step-body">Connect with our intake team by phone, form, or email.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-title">Verify Benefits</div><div class="step-body">We'll help verify your TRICARE coverage.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-title">Schedule Your Intake</div><div class="step-body">We'll learn about your child's unique needs and goals.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-title">Begin Services</div><div class="step-body">Meet your clinical team and start your individualized ABA program.</div></div>
+    <p class="eyebrow eyebrow-center eyebrow-purple reveal">How to Get Started</p>
+    <h2 class="section-title section-title-center reveal">Your Journey Starts Here</h2>
+    <div class="steps-row" style="position:relative;"><div class="steps-connector"></div>
+      <div class="step reveal delay-1"><div class="step-num">1</div><div class="step-title">Reach Out</div><div class="step-body">Connect with our intake team by phone, form, or email.</div></div>
+      <div class="step reveal delay-2"><div class="step-num">2</div><div class="step-title">Verify Benefits</div><div class="step-body">We'll help verify your TRICARE coverage.</div></div>
+      <div class="step reveal delay-3"><div class="step-num">3</div><div class="step-title">Schedule Your Intake</div><div class="step-body">We'll learn about your child's unique needs and goals.</div></div>
+      <div class="step reveal delay-4"><div class="step-num">4</div><div class="step-title">Begin Services</div><div class="step-body">Meet your clinical team and start your individualized ABA program.</div></div>
     </div>
-    <div style="text-align:center;margin-top:3rem;">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Get Started Today</a>
-    </div>
+    <div style="text-align:center;margin-top:3rem;"><a href="#hero-form" class="btn btn-coral btn-coral-lg">Get Started Today</a></div>
   </div>
 </section>
 
 <!-- ══ WHAT TO EXPECT ══ -->
 <section class="expect pad">
   <div class="container">
-    <p class="eyebrow eyebrow-teal">What to Expect</p>
-    <h2 class="section-title">What to Expect When You Contact Us</h2>
-    <p class="section-body" style="max-width:580px;">Many families are anxious about making the first call. Here's exactly what happens — no surprises, no pressure.</p>
+    <p class="eyebrow eyebrow-teal reveal">What to Expect</p>
+    <h2 class="section-title reveal">What to Expect When You Contact Us</h2>
+    <p class="section-body reveal" style="max-width:560px;">Many families are anxious about making the first call. Here's exactly what happens — no surprises, no pressure.</p>
     <div class="expect-grid">
-      <div class="expect-card c1">
+      <div class="expect-card c1"><div class="expect-card-bar"></div>
         <div class="expect-num">01</div>
         <div class="expect-title">We'll Answer Your Questions</div>
-        <div class="expect-body">You'll speak with a real person who understands TRICARE, autism services, and the challenges military families face — no scripts, no runaround.</div>
+        <div class="expect-body">You'll speak with a real person who understands TRICARE and the challenges military families face — no scripts, no runaround.</div>
       </div>
-      <div class="expect-card c2">
+      <div class="expect-card c2"><div class="expect-card-bar"></div>
         <div class="expect-num">02</div>
         <div class="expect-title">We'll Help Verify Your Benefits</div>
-        <div class="expect-body">We handle TRICARE verification on your behalf so you know exactly what's covered before committing to anything. No paperwork surprises.</div>
+        <div class="expect-body">We handle TRICARE verification on your behalf so you know exactly what's covered. No paperwork surprises.</div>
       </div>
-      <div class="expect-card c3">
+      <div class="expect-card c3"><div class="expect-card-bar"></div>
         <div class="expect-num">03</div>
         <div class="expect-title">We'll Guide You Through Next Steps</div>
-        <div class="expect-body">Whether you're ready to start or just gathering information, we'll walk you through the process clearly — at your pace, on your timeline.</div>
+        <div class="expect-body">Whether you're ready to start or just gathering information, we'll walk you through clearly — at your pace, on your timeline.</div>
       </div>
     </div>
   </div>
@@ -797,87 +1338,78 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
 <section class="locations pad">
   <div class="container">
     <div class="locations-inner">
-      <div class="locations-left">
+      <div class="reveal-left">
         <p class="eyebrow">Locations</p>
-        <h2 class="locations-left h2" style="font-size:2rem;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:1rem;">Proudly Serving Military Families</h2>
+        <h2 class="section-title">Proudly Serving Military Families</h2>
         <p class="section-body">TRICARE-accepted ABA therapy in Colorado, Illinois, and North Carolina — close to home, close to base.</p>
         <div class="locations-list">
-          <a href="#">Colorado</a>
-          <a href="#">Illinois</a>
-          <a href="#">North Carolina</a>
+          <a href="#"><span class="locations-list-arrow">▶</span>Colorado</a>
+          <a href="#"><span class="locations-list-arrow">▶</span>Illinois</a>
+          <a href="#"><span class="locations-list-arrow">▶</span>North Carolina</a>
         </div>
-        <div class="actions"><a href="#form-section" class="btn btn-coral" style="margin-top:1.5rem;">Get Started Today</a></div>
+        <div class="actions" style="margin-top:1.5rem;"><a href="#hero-form" class="btn btn-coral">Get Started Today</a></div>
       </div>
-
-      <!-- US MAP matching real site style -->
-      <div class="map-svg-wrap">
-        <svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" id="us-map">
-          <!-- Simplified US states - key states highlighted -->
-          <!-- Background states (grey) -->
-          <g class="state-default" opacity="0.4">
-            <rect x="30"  y="80"  width="80"  height="60"  rx="3" class="state-default"/><!-- WA -->
-            <rect x="30"  y="150" width="80"  height="60"  rx="3" class="state-default"/><!-- OR -->
-            <rect x="30"  y="220" width="80"  height="80"  rx="3" class="state-default"/><!-- CA -->
-            <rect x="120" y="80"  width="70"  height="60"  rx="3" class="state-default"/><!-- ID -->
-            <rect x="120" y="150" width="70"  height="60"  rx="3" class="state-default"/><!-- NV -->
-            <rect x="120" y="220" width="70"  height="60"  rx="3" class="state-default"/><!-- UT -->
-            <rect x="200" y="80"  width="70"  height="60"  rx="3" class="state-default"/><!-- MT -->
-            <rect x="200" y="150" width="70"  height="60"  rx="3" class="state-default"/><!-- WY -->
-            <rect x="280" y="80"  width="70"  height="60"  rx="3" class="state-default"/><!-- ND -->
-            <rect x="280" y="150" width="70"  height="60"  rx="3" class="state-default"/><!-- SD -->
-            <rect x="280" y="220" width="70"  height="60"  rx="3" class="state-default"/><!-- NE -->
-            <rect x="360" y="80"  width="70"  height="60"  rx="3" class="state-default"/><!-- MN -->
-            <rect x="360" y="150" width="70"  height="60"  rx="3" class="state-default"/><!-- IA -->
-            <rect x="360" y="220" width="70"  height="60"  rx="3" class="state-default"/><!-- MO -->
-            <rect x="440" y="80"  width="60"  height="60"  rx="3" class="state-default"/><!-- WI -->
-            <rect x="510" y="80"  width="50"  height="50"  rx="3" class="state-default"/><!-- MI -->
-            <rect x="510" y="140" width="50"  height="50"  rx="3" class="state-default"/><!-- IN -->
-            <rect x="510" y="200" width="50"  height="50"  rx="3" class="state-default"/><!-- OH -->
-            <rect x="560" y="80"  width="50"  height="50"  rx="3" class="state-default"/><!-- PA -->
-            <rect x="560" y="140" width="50"  height="40"  rx="3" class="state-default"/><!-- NJ -->
-            <rect x="610" y="80"  width="50"  height="40"  rx="3" class="state-default"/><!-- NY -->
-            <rect x="610" y="130" width="40"  height="30"  rx="3" class="state-default"/><!-- CT -->
-            <rect x="660" y="80"  width="30"  height="30"  rx="3" class="state-default"/><!-- MA -->
-            <rect x="660" y="120" width="30"  height="30"  rx="3" class="state-default"/><!-- RI -->
-            <rect x="360" y="290" width="70"  height="60"  rx="3" class="state-default"/><!-- KS -->
-            <rect x="360" y="360" width="70"  height="60"  rx="3" class="state-default"/><!-- OK -->
-            <rect x="360" y="430" width="70"  height="80"  rx="3" class="state-default"/><!-- TX -->
-            <rect x="440" y="290" width="60"  height="55"  rx="3" class="state-default"/><!-- MO lower -->
-            <rect x="440" y="360" width="60"  height="55"  rx="3" class="state-default"/><!-- AR -->
-            <rect x="440" y="430" width="60"  height="55"  rx="3" class="state-default"/><!-- LA -->
-            <rect x="510" y="260" width="50"  height="50"  rx="3" class="state-default"/><!-- KY -->
-            <rect x="510" y="320" width="50"  height="50"  rx="3" class="state-default"/><!-- TN -->
-            <rect x="510" y="380" width="50"  height="50"  rx="3" class="state-default"/><!-- MS -->
-            <rect x="560" y="200" width="50"  height="50"  rx="3" class="state-default"/><!-- WV/VA -->
-            <rect x="610" y="260" width="50"  height="50"  rx="3" class="state-default"/><!-- SC -->
-            <rect x="660" y="300" width="50"  height="50"  rx="3" class="state-default"/><!-- FL -->
-            <rect x="120" y="300" width="70"  height="60"  rx="3" class="state-default"/><!-- AZ -->
-            <rect x="200" y="220" width="70"  height="60"  rx="3" class="state-default"/><!-- CO highlighted below -->
-            <rect x="120" y="370" width="70"  height="60"  rx="3" class="state-default"/><!-- NM -->
+      <div class="map-svg-wrap reveal-right">
+        <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base states grid -->
+          <g opacity="0.35">
+            <rect x="20"  y="60"  width="60" height="50" rx="3" class="map-state"/>
+            <rect x="20"  y="115" width="60" height="50" rx="3" class="map-state"/>
+            <rect x="20"  y="170" width="60" height="70" rx="3" class="map-state"/>
+            <rect x="85"  y="60"  width="55" height="50" rx="3" class="map-state"/>
+            <rect x="85"  y="115" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="85"  y="170" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="145" y="60"  width="55" height="50" rx="3" class="map-state"/>
+            <rect x="145" y="115" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="205" y="60"  width="55" height="50" rx="3" class="map-state"/>
+            <rect x="205" y="115" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="205" y="170" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="265" y="60"  width="55" height="50" rx="3" class="map-state"/>
+            <rect x="265" y="115" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="265" y="170" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="325" y="60"  width="45" height="45" rx="3" class="map-state"/>
+            <rect x="375" y="60"  width="40" height="40" rx="3" class="map-state"/>
+            <rect x="375" y="105" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="375" y="150" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="415" y="60"  width="40" height="35" rx="3" class="map-state"/>
+            <rect x="415" y="100" width="40" height="35" rx="3" class="map-state"/>
+            <rect x="455" y="60"  width="40" height="35" rx="3" class="map-state"/>
+            <rect x="495" y="60"  width="35" height="30" rx="3" class="map-state"/>
+            <rect x="495" y="95"  width="35" height="30" rx="3" class="map-state"/>
+            <rect x="530" y="60"  width="30" height="25" rx="3" class="map-state"/>
+            <rect x="265" y="225" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="265" y="280" width="55" height="60" rx="3" class="map-state"/>
+            <rect x="265" y="345" width="55" height="55" rx="3" class="map-state"/>
+            <rect x="325" y="225" width="45" height="45" rx="3" class="map-state"/>
+            <rect x="325" y="275" width="45" height="45" rx="3" class="map-state"/>
+            <rect x="325" y="325" width="45" height="45" rx="3" class="map-state"/>
+            <rect x="375" y="200" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="375" y="245" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="375" y="290" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="415" y="200" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="455" y="225" width="40" height="40" rx="3" class="map-state"/>
+            <rect x="85"  y="230" width="55" height="50" rx="3" class="map-state"/>
+            <rect x="85"  y="285" width="55" height="50" rx="3" class="map-state"/>
           </g>
-
-          <!-- HIGHLIGHTED STATES -->
-          <!-- Colorado -->
-          <rect x="200" y="220" width="70" height="60" rx="4" fill="var(--coral)" class="state-active" id="map-co" style="cursor:pointer;"/>
-          <text x="235" y="256" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="white" font-weight="800">CO</text>
-
-          <!-- Illinois -->
-          <rect x="460" y="150" width="46" height="70" rx="4" fill="var(--gold)" class="state-active" id="map-il" style="cursor:pointer;"/>
-          <text x="483" y="190" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="white" font-weight="800">IL</text>
-
-          <!-- North Carolina -->
-          <rect x="600" y="230" width="70" height="40" rx="4" fill="var(--gold)" class="state-active" id="map-nc" style="cursor:pointer;"/>
-          <text x="635" y="256" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="white" font-weight="800">NC</text>
-
+          <!-- Colorado highlighted -->
+          <rect x="145" y="170" width="55" height="50" rx="5" class="map-state map-co" style="cursor:pointer;" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})"/>
+          <text x="172" y="200" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="white" font-weight="800">CO</text>
+          <!-- Illinois highlighted -->
+          <rect x="325" y="110" width="45" height="70" rx="5" class="map-state map-il" style="cursor:pointer;" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})"/>
+          <text x="347" y="150" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="white" font-weight="800">IL</text>
+          <!-- North Carolina highlighted -->
+          <rect x="455" y="168" width="70" height="35" rx="5" class="map-state map-nc" style="cursor:pointer;" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})"/>
+          <text x="490" y="190" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="white" font-weight="800">NC</text>
           <!-- Labels -->
-          <text x="235" y="298" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="var(--navy)" font-weight="700">Colorado</text>
-          <text x="483" y="234" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="var(--navy)" font-weight="700">Illinois</text>
-          <text x="635" y="285" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="var(--navy)" font-weight="700">North Carolina</text>
-
+          <text x="172" y="232" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="var(--navy)" font-weight="700">Colorado</text>
+          <text x="347" y="192" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="var(--navy)" font-weight="700">Illinois</text>
+          <text x="490" y="214" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="var(--navy)" font-weight="700">North Carolina</text>
           <!-- TRICARE badge -->
-          <rect x="700" y="140" width="140" height="60" rx="10" fill="var(--purple)" opacity=".9"/>
-          <text x="770" y="163" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="white" font-weight="800">🛡️ TRICARE</text>
-          <text x="770" y="182" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="rgba(255,255,255,.85)" font-weight="600">Accepted Here</text>
+          <rect x="530" y="280" width="150" height="56" rx="10" fill="var(--purple)"/>
+          <text x="605" y="303" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="white" font-weight="800">🛡️ TRICARE</text>
+          <text x="605" y="322" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="rgba(255,255,255,.8)" font-weight="600">Accepted Here</text>
+          <!-- Tooltip hint -->
+          <text x="350" y="390" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="var(--text-muted)">Click a state to get started</text>
         </svg>
         <div class="map-legend">
           <div class="map-legend-item"><div class="legend-dot" style="background:var(--coral);"></div> Colorado</div>
@@ -886,81 +1418,122 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
         </div>
       </div>
     </div>
-
-    <!-- Location cards below -->
-    <div class="loc-cards">
-      <div class="loc-card">
-        <div class="loc-flag"><img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c7a1f72facf8781a5a20f_Screenshot%202026-07-19%20at%2012.16.55%E2%80%AFPM.png" alt="Colorado"></div>
-        <div class="loc-body"><div class="loc-state">Colorado</div><div class="loc-desc">ABA therapy across the Denver metro and surrounding communities. TRICARE accepted.</div><a href="#" class="loc-link">View Services</a></div>
+    <!-- LOCATION CARDS CAROUSEL -->
+    <div class="loc-carousel-wrap">
+      <div class="loc-carousel-track" id="loc-track">
+        <div class="loc-card">
+          <div class="loc-flag"><img src="https://images.unsplash.com/photo-1619468129361-605ebea04b44?w=600&q=80" alt="Colorado"><div class="loc-flag-overlay"></div></div>
+          <div class="loc-body">
+            <div class="loc-state">Colorado</div>
+            <div class="loc-desc">ABA therapy across the Denver metro and surrounding communities. TRICARE accepted.</div>
+            <a href="#" class="loc-link">View Services</a>
+          </div>
+        </div>
+        <div class="loc-card">
+          <div class="loc-flag"><img src="https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=600&q=80" alt="Illinois"><div class="loc-flag-overlay"></div></div>
+          <div class="loc-body">
+            <div class="loc-state">Illinois</div>
+            <div class="loc-desc">Compassionate, evidence-based care for Illinois military families. TRICARE accepted.</div>
+            <a href="#" class="loc-link">View Services</a>
+          </div>
+        </div>
+        <div class="loc-card">
+          <div class="loc-flag"><img src="https://images.unsplash.com/photo-1538935732373-f7a495fea3f6?w=600&q=80" alt="North Carolina"><div class="loc-flag-overlay"></div></div>
+          <div class="loc-body">
+            <div class="loc-state">North Carolina</div>
+            <div class="loc-desc">Personalized therapy options throughout North Carolina. TRICARE accepted.</div>
+            <a href="#" class="loc-link">View Services</a>
+          </div>
+        </div>
       </div>
-      <div class="loc-card">
-        <div class="loc-flag"><img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c7a1f495c001d058aec34_Screenshot%202026-07-19%20at%2012.17.37%E2%80%AFPM.png" alt="Illinois"></div>
-        <div class="loc-body"><div class="loc-state">Illinois</div><div class="loc-desc">Compassionate, evidence-based care for Illinois military families. TRICARE accepted.</div><a href="#" class="loc-link">View Services</a></div>
-      </div>
-      <div class="loc-card">
-        <div class="loc-flag"><img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c7a784db14d941834b42b_Screenshot%202026-07-19%20at%2012.18.46%E2%80%AFPM.png" alt="North Carolina"></div>
-        <div class="loc-body"><div class="loc-state">North Carolina</div><div class="loc-desc">Personalized therapy options throughout North Carolina. TRICARE accepted.</div><a href="#" class="loc-link">View Services</a></div>
-      </div>
+    </div>
+    <div class="loc-carousel-controls">
+      <button class="loc-carousel-btn" id="loc-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="loc-carousel-dots" id="loc-dots"></div>
+      <button class="loc-carousel-btn" id="loc-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<section class="faq pad" id="faq-section">
+<!-- ══ FAQ ACCORDION ══ -->
+<section class="faq-section pad" id="faq-section">
   <div class="faq-inner">
-    <p class="eyebrow eyebrow-center">FAQ</p>
-    <h2 class="section-title section-title-center">Frequently Asked Questions</h2>
+    <p class="eyebrow eyebrow-center reveal">FAQ</p>
+    <h2 class="section-title section-title-center reveal">Frequently Asked Questions</h2>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q">Do you accept TRICARE? <span class="faq-plus">+</span></button><div class="faq-a">Yes! Key Autism Services proudly accepts TRICARE in Colorado, Illinois, and North Carolina. Our intake team can help verify your specific benefits and coverage before you begin.</div></div>
-      <div class="faq-item"><button class="faq-q">How do I get started? <span class="faq-plus">+</span></button><div class="faq-a">Simply fill out the form on this page or call us at (888) 329-4535. Our intake team will guide you through every step — from verifying your TRICARE benefits to scheduling your first appointment.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need a referral? <span class="faq-plus">+</span></button><div class="faq-a">Referral requirements depend on your specific TRICARE plan. Our team is experienced in navigating these requirements and will help you understand what's needed at no extra burden to you.</div></div>
-      <div class="faq-item"><button class="faq-q">How long does the intake process take? <span class="faq-plus">+</span></button><div class="faq-a">Most families are contacted within 1–2 business days of reaching out. The full intake process typically takes 2–4 weeks depending on your location and TRICARE plan.</div></div>
-      <div class="faq-item"><button class="faq-q">What ages do you serve? <span class="faq-plus">+</span></button><div class="faq-a">We support children from early intervention age through adolescence. Contact us if you're unsure whether your child qualifies.</div></div>
-      <div class="faq-item"><button class="faq-q">What areas do you serve? <span class="faq-plus">+</span></button><div class="faq-a">We currently provide TRICARE-accepted ABA therapy in Colorado, Illinois, and North Carolina. Contact us to see if your location is covered.</div></div>
-      <div class="faq-item"><button class="faq-q">Can I continue services if my family PCS's? <span class="faq-plus">+</span></button><div class="faq-a">We understand PCS moves are part of military life. If your family relocates to another state where we have services, we'll do everything we can to support a smooth transition. Contact our team to discuss your options.</div></div>
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you accept TRICARE?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">Yes! Key Autism Services proudly accepts TRICARE in Colorado, Illinois, and North Carolina. Our intake team can help verify your specific benefits and coverage before you begin.</div></div>
+      </div>
+      <div class="faq-item reveal delay-2">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I get started?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">Simply fill out the form on this page or call us at (888) 329-4535. Our intake team will guide you through every step — from verifying your TRICARE benefits to scheduling your first appointment.</div></div>
+      </div>
+      <div class="faq-item reveal delay-3">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need a referral?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">Referral requirements depend on your specific TRICARE plan. Our team is experienced in navigating these requirements and will help you understand what's needed at no extra burden to you.</div></div>
+      </div>
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does the intake process take?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">Most families are contacted within 1–2 business days of reaching out. The full intake process typically takes 2–4 weeks depending on your location and TRICARE plan.</div></div>
+      </div>
+      <div class="faq-item reveal delay-2">
+        <button class="faq-q" onclick="toggleFaq(this)">What ages do you serve?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">We support children from early intervention age through adolescence. Contact us if you're unsure whether your child qualifies.</div></div>
+      </div>
+      <div class="faq-item reveal delay-3">
+        <button class="faq-q" onclick="toggleFaq(this)">What areas do you serve?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">We currently provide TRICARE-accepted ABA therapy in Colorado, Illinois, and North Carolina. Contact us to see if your location is covered.</div></div>
+      </div>
+      <div class="faq-item reveal delay-1">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I continue services if my family PCS's?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></button>
+        <div class="faq-body"><div class="faq-body-inner">We understand PCS moves are part of military life. If your family relocates to another state where we have services, we'll do everything we can to support a smooth transition. Contact our team to discuss your options.</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ PROVIDER SECTION ══ -->
+<!-- ══ PROVIDER ══ -->
 <div class="provider">
-  <div class="provider-img">
-    <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c74ca32de169d77200748_christina-matviikiv-V92xhN7KSeU-unsplash-p-800.jpg" alt="Healthcare provider with child">
-  </div>
-  <div class="provider-text">
+  <div class="provider-img reveal-left"><img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=80" alt="Healthcare provider with child"></div>
+  <div class="provider-text reveal-right">
     <p class="eyebrow eyebrow-teal">For Healthcare Providers</p>
     <h2 class="section-title">Referring a Military Family?</h2>
-    <p class="section-body">We're proud to partner with pediatricians, developmental specialists, military healthcare providers, and community organizations to help families access ABA therapy. Our intake team makes the referral process simple.</p>
-    <div class="actions">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Refer a Family</a>
-    </div>
+    <p class="section-body">We're proud to partner with pediatricians, developmental specialists, military healthcare providers, and community organizations to help families access ABA therapy.</p>
+    <div class="actions"><a href="#hero-form" class="btn btn-coral btn-coral-lg">Refer a Family</a></div>
   </div>
 </div>
 
 <!-- ══ FINAL CTA ══ -->
 <div class="final-cta">
-  <div class="final-cta-img">
-    <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c73be4c8783adb4240cd4_vitaly-gariev-aeurI5QKKOU-unsplash-p-1080.jpg" alt="Family beginning ABA therapy journey">
-    <div class="final-cta-overlay"></div>
+  <div class="final-cta-img-wrap reveal-left">
+    <div class="final-cta-img">
+      <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1200&q=80" alt="Family beginning ABA therapy journey">
+      <div class="final-cta-overlay"></div>
+    </div>
   </div>
-  <div class="final-cta-text">
+  <div class="final-cta-text reveal-right">
     <p class="eyebrow eyebrow-gold">Take the Next Step</p>
     <h2 class="section-title section-title-white">Let's Take the Next Step Together</h2>
     <p class="section-body">Whether you're new to Colorado, Illinois, or North Carolina — or have called these communities home for years — our team is here to help your family navigate the path to ABA therapy with confidence.</p>
     <div class="actions">
-      <a href="#form-section" class="btn btn-coral btn-coral-lg">Get Started</a>
+      <a href="#hero-form" class="btn btn-coral btn-coral-lg">Get Started</a>
       <a href="tel:8883294535" class="btn-outline-white btn-coral-lg">Contact Our Team</a>
     </div>
   </div>
 </div>
 
-<!-- ══ UNLOCK POTENTIAL BANNER ══ -->
-<div class="unlock-banner">
+<!-- ══ UNLOCK BANNER ══ -->
+<div class="unlock-banner" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=30');background-size:cover;background-position:center;background-blend-mode:multiply;">
   <div class="unlock-icon">🔑</div>
   <div class="unlock-title">Unlock Their <span>Potential.</span><br>Get Started Today!</div>
   <div class="unlock-actions">
     <a href="tel:8883294535" class="btn-gold">(888) 329-4535</a>
-    <a href="#form-section" class="btn btn-outline-white" style="font-size:15px;padding:12px 26px;">Fill Out an Inquiry Form</a>
+    <a href="#hero-form" class="btn btn-outline-white" style="font-size:15px;padding:12px 26px;">Fill Out an Inquiry Form</a>
   </div>
 </div>
 
@@ -969,7 +1542,17 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
   <div class="footer-top">
     <div>
       <div class="footer-logo-row">
-        <img src="https://cdn.prod.website-files.com/6a5c61ae9841340fd2cf2729/6a5c7342d5be781812447fe7_Screenshot%202026-07-19%20at%2011.48.12%E2%80%AFAM-p-500.png" alt="Key Autism Services" class="footer-logo-img">
+        <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+          <rect width="52" height="52" rx="12" fill="#2A4A6A"/>
+          <circle cx="20" cy="22" r="8" fill="none" stroke="#F5A623" stroke-width="3"/>
+          <circle cx="20" cy="22" r="4" fill="#F5A623" opacity=".4"/>
+          <rect x="26" y="20" width="14" height="3.5" rx="1.5" fill="#E8614A"/>
+          <rect x="34" y="23.5" width="3.5" height="5" rx="1.5" fill="#7B6BA0"/>
+          <rect x="28" y="23.5" width="3.5" height="4" rx="1.5" fill="#5BA85A"/>
+          <circle cx="17" cy="8" r="2.5" fill="#7B6BA0" opacity=".8"/>
+          <circle cx="26" cy="6" r="3" fill="#E8614A" opacity=".9"/>
+          <circle cx="35" cy="8" r="2.5" fill="#5BA85A" opacity=".8"/>
+        </svg>
         <div><div class="footer-brand">Key Autism Services</div><div class="footer-brand-sub">ABA Therapy</div></div>
       </div>
       <p class="footer-tagline">Still have questions?<br>Contact our intake team — we're here to help.</p>
@@ -978,10 +1561,8 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
     <div class="footer-col">
       <h3>Locations</h3>
       <div class="footer-locs-grid">
-        <a href="#">Alabama</a><a href="#">Colorado</a>
-        <a href="#">Georgia</a><a href="#">Illinois</a>
-        <a href="#">Massachusetts</a><a href="#">North Carolina</a>
-        <a href="#">Tennessee</a><a href="#">Texas</a>
+        <a href="#">Alabama</a><a href="#"><span class="locations-list-arrow">▶</span>Colorado</a><a href="#">Georgia</a><a href="#"><span class="locations-list-arrow">▶</span>Illinois</a>
+        <a href="#">Massachusetts</a><a href="#"><span class="locations-list-arrow">▶</span>North Carolina</a><a href="#">Tennessee</a><a href="#">Texas</a>
       </div>
     </div>
     <div class="footer-col">
@@ -990,61 +1571,206 @@ footer { background: #1E2D42; padding: 52px 60px 28px; color: #9FB2C4; }
       <a href="#" class="footer-contact-link">Parent Resources</a>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Key Autism Services</span>
-    <a href="#">Privacy Policy</a>
-  </div>
+  <div class="footer-bottom"><span>© 2026 Key Autism Services</span><a href="#">Privacy Policy</a></div>
 </footer>
 
 <script>
-/* FAQ */
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
+/* ─ EXPECT CARDS SCROLL ANIMATION ─ */
+(function(){
+  const cards = document.querySelectorAll('.expect-card');
+  if(!cards.length) return;
 
-/* Hero form */
-function submitHeroForm() {
-  const n = document.getElementById('h-name').value.trim();
-  const e = document.getElementById('h-email').value.trim();
-  const p = document.getElementById('h-phone').value.trim();
-  const z = document.getElementById('h-zip').value.trim();
-  if (!n || !e || !p || !z) { alert('Please fill in all required fields.'); return; }
-  document.getElementById('hero-form-fields').style.display = 'none';
-  document.getElementById('hero-form-success').style.display = 'block';
-}
-
-/* Map hover tooltips */
-['map-co','map-il','map-nc'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) { el.addEventListener('click', () => { document.getElementById('form-section') ? document.querySelector('#form-section').scrollIntoView({behavior:'smooth'}) : null; }); }
-});
-
-/* Hamburger */
-const toggle = document.getElementById('nav-toggle');
-const drawer = document.getElementById('nav-drawer');
-let open = false;
-toggle.addEventListener('click', () => {
-  open = !open;
-  drawer.style.display = open ? 'flex' : 'none';
-  const bars = toggle.querySelectorAll('span');
-  if (open) {
-    bars[0].style.transform = 'translateY(7px) rotate(45deg)';
-    bars[1].style.opacity = '0';
-    bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-  } else {
-    bars.forEach(b => { b.style.transform = ''; b.style.opacity = ''; });
+  function triggerCard(card, delay){
+    setTimeout(() => card.classList.add('in-view'), delay);
   }
-});
-function closeDrawer() {
-  open = false; drawer.style.display = 'none';
-  toggle.querySelectorAll('span').forEach(b => { b.style.transform = ''; b.style.opacity = ''; });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const idx = Array.from(cards).indexOf(e.target);
+        triggerCard(e.target, idx * 180);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach(c => obs.observe(c));
+
+  /* Fallback: if already in viewport on load, trigger after short delay */
+  setTimeout(() => {
+    cards.forEach((c, i) => {
+      const r = c.getBoundingClientRect();
+      if(r.top < window.innerHeight && !c.classList.contains('in-view')){
+        triggerCard(c, i * 180);
+      }
+    });
+  }, 300);
+})();
+
+/* ─ SCROLL REVEAL ─ */
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+/* ─ STATS COUNTER ─ */
+const statNums = document.querySelectorAll('.stat-num[data-target]');
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target, target = +el.dataset.target, dur = 1600;
+      const start = Date.now();
+      const tick = () => {
+        const p = Math.min((Date.now()-start)/dur, 1);
+        el.textContent = Math.round(p * target);
+        if(p < 1) requestAnimationFrame(tick);
+      };
+      tick(); statsObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+statNums.forEach(el => statsObs.observe(el));
+
+/* ─ LOCATION CAROUSEL ─ */
+(function(){
+  const track   = document.getElementById('loc-track');
+  const dotsWrap= document.getElementById('loc-dots');
+  if(!track) return;
+  const cards   = track.querySelectorAll('.loc-card');
+  const total   = cards.length;
+  let current   = 0, locTimer;
+
+  function locPerView(){
+    if(window.innerWidth < 600)  return 1;
+    if(window.innerWidth < 960)  return 2;
+    return 3; /* show all 3 on desktop — still carousel ready */
+  }
+
+  function buildLocDots(){
+    dotsWrap.innerHTML = '';
+    const pv    = locPerView();
+    const pages = Math.ceil(total / pv);
+    for(let i = 0; i < pages; i++){
+      const d = document.createElement('button');
+      d.className = 'loc-carousel-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => locGoTo(i);
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function locGoTo(idx){
+    const pv    = locPerView();
+    const pages = Math.ceil(total / pv);
+    current     = (idx + pages) % pages;
+    const cardW = cards[0].offsetWidth + 24;
+    track.style.transform = `translateX(-${current * cardW * pv}px)`;
+    dotsWrap.querySelectorAll('.loc-carousel-dot').forEach((d,i) =>
+      d.classList.toggle('active', i === current));
+  }
+
+  function startLocAuto(){ locTimer = setInterval(() => locGoTo(current + 1), 4000); }
+  function stopLocAuto(){  clearInterval(locTimer); }
+
+  document.getElementById('loc-next').onclick = () => { stopLocAuto(); locGoTo(current + 1); startLocAuto(); };
+  document.getElementById('loc-prev').onclick = () => { stopLocAuto(); locGoTo(current - 1); startLocAuto(); };
+  window.addEventListener('resize', () => { buildLocDots(); locGoTo(0); });
+
+  buildLocDots(); startLocAuto();
+})();
+
+/* ─ TESTIMONIAL CAROUSEL ─ */
+const track  = document.getElementById('carousel-track');
+const dotsWrap = document.getElementById('carousel-dots');
+const cards  = track.querySelectorAll('.testimonial-card');
+const total  = cards.length;
+let current  = 0, autoTimer;
+const perView = () => window.innerWidth < 600 ? 1 : window.innerWidth < 960 ? 2 : 3;
+
+function buildDots(){
+  dotsWrap.innerHTML='';
+  const pages = Math.ceil(total / perView());
+  for(let i=0;i<pages;i++){
+    const d = document.createElement('button');
+    d.className='carousel-dot'+(i===0?' active':'');
+    d.onclick=()=>goTo(i);
+    dotsWrap.appendChild(d);
+  }
 }
-window.addEventListener('resize', () => { if (window.innerWidth > 768) closeDrawer(); });
+function goTo(idx){
+  const pv = perView(), pages = Math.ceil(total/pv);
+  current = (idx + pages) % pages;
+  const cardW = cards[0].offsetWidth + 24;
+  track.style.transform = `translateX(-${current * cardW * pv}px)`;
+  dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+function startAuto(){ autoTimer = setInterval(()=>goTo(current+1), 4500); }
+function stopAuto(){ clearInterval(autoTimer); }
+
+document.getElementById('carousel-next').onclick = ()=>{ stopAuto(); goTo(current+1); startAuto(); };
+document.getElementById('carousel-prev').onclick = ()=>{ stopAuto(); goTo(current-1); startAuto(); };
+window.addEventListener('resize', ()=>{ buildDots(); goTo(0); });
+buildDots(); startAuto();
+
+/* ─ FAQ ACCORDION ─ */
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ─ HERO FORM ─ */
+function submitHeroForm(){
+  const n=document.getElementById('h-name').value.trim();
+  const e=document.getElementById('h-email').value.trim();
+  const p=document.getElementById('h-phone').value.trim();
+  const z=document.getElementById('h-zip').value.trim();
+  if(!n||!e||!p||!z){alert('Please fill in all required fields.');return;}
+  document.getElementById('hero-form-fields').style.display='none';
+  document.getElementById('hero-form-success').style.display='block';
+}
+
+/* ─ STICKY STACK SCALE EFFECT ─ */
+(function(){
+  const cards = document.querySelectorAll('.stack-card');
+  if(!cards.length) return;
+
+  function navH(){
+    if(window.innerWidth <= 768)  return 64;
+    if(window.innerWidth <= 1024) return 74;
+    return 90;
+  }
+
+  function updateStack(){
+    const nh = navH();
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      /* How far past sticky point this card has been pushed */
+      const overlapRatio = Math.max(0, Math.min(1, (nh - rect.top) / (rect.height * 0.4)));
+      const scale      = 1 - (overlapRatio * 0.03);
+      const brightness = 1 - (overlapRatio * 0.08);
+      card.style.transform      = `scale(${scale})`;
+      card.style.filter         = `brightness(${brightness})`;
+      card.style.transformOrigin = 'center top';
+    });
+  }
+
+  window.addEventListener('scroll', updateStack, { passive: true });
+  window.addEventListener('resize', updateStack, { passive: true });
+  updateStack();
+})();
+const toggle=document.getElementById('nav-toggle');
+const drawer=document.getElementById('nav-drawer');
+let open=false;
+toggle.addEventListener('click',()=>{
+  open=!open; drawer.style.display=open?'flex':'none';
+  const bars=toggle.querySelectorAll('span');
+  if(open){bars[0].style.transform='translateY(7px) rotate(45deg)';bars[1].style.opacity='0';bars[2].style.transform='translateY(-7px) rotate(-45deg)';}
+  else{bars.forEach(b=>{b.style.transform='';b.style.opacity='';}); }
+});
+function closeDrawer(){open=false;drawer.style.display='none';toggle.querySelectorAll('span').forEach(b=>{b.style.transform='';b.style.opacity='';});}
+window.addEventListener('resize',()=>{if(window.innerWidth>768)closeDrawer();});
 </script>
 </body>
 </html>
